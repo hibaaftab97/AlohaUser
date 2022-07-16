@@ -33,31 +33,79 @@ const PaymentDetailScreen = props => {
 
   return (
     <View style={styles.scroll}>
-      <CommonHeader 
+      <CommonHeader
         title="Payment Details"
         profile />
-      <View style={styles.box}>
-        <View style={{}}>
-          <TextWrapper style={styles.title}>Date</TextWrapper>
-          <TextWrapper style={styles.subtitle}>01 April, 2022</TextWrapper>
-        </View>
-        <View style={{ marginTop: 2 * vh }}>
-          <TextWrapper style={styles.title}>Amount</TextWrapper>
-          <TextWrapper style={[styles.subtitle, { color: theme.primary, fontSize: 2.5 * vh }]}>$238.92</TextWrapper>
+      <View style={{ alignItems: 'center' }}>
+        <View style={styles.box}>
+          <View style={styles.rowCon}>
+            <View style={styles.borderBox}>
+              <TextWrapper style={styles.title}>Date</TextWrapper>
 
-        </View>
-        <View style={{ marginTop: 2 * vh }}>
-          <TextWrapper style={styles.title}>Payment Method</TextWrapper>
-          <TextWrapper style={styles.subtitle}>Master Card</TextWrapper>
-        </View>
-        <View style={{ marginTop: 2 * vh }}>
-          <TextWrapper style={styles.title}>Phasellus mollis felis vel nulla sodales, in blandit lacus elem</TextWrapper>
+            </View>
+            <View style={{ width: 30 * vw, height: 5 * vh, justifyContent: 'center' }}>
+              <TextWrapper style={styles.subtitle}>01 April, 2022</TextWrapper>
+
+            </View>
+
+          </View>
+
 
         </View>
 
+        <View style={styles.box}>
+          <View style={styles.rowCon}>
+            <View style={styles.borderBox}>
+              <TextWrapper style={styles.title}>Time</TextWrapper>
+
+            </View>
+            <View style={{ width: 30 * vw, height: 5 * vh, justifyContent: 'center' }}>
+              <TextWrapper style={styles.subtitle}>04 : 20 pm</TextWrapper>
+
+            </View>
+
+          </View>
+
+
+        </View>
+
+        <View style={styles.box}>
+          <View style={styles.rowCon}>
+            <View style={styles.borderBox}>
+              <TextWrapper style={styles.title}>Service Name</TextWrapper>
+
+            </View>
+            <View style={{ width: 30 * vw, height: 5 * vh, justifyContent: 'center' }}>
+              <TextWrapper style={styles.subtitle}>BP - Blood Pressure </TextWrapper>
+
+            </View>
+
+          </View>
+
+
+        </View>
+
+        <View style={styles.box}>
+          <View style={styles.rowCon}>
+            <View style={styles.borderBox}>
+              <TextWrapper style={styles.title}>Amount</TextWrapper>
+
+            </View>
+            <View style={{ width: 30 * vw, height: 5 * vh, justifyContent: 'center' }}>
+              <TextWrapper style={[styles.subtitle, { color: theme.primary, fontSize: 2 * vh }]}>$232.98</TextWrapper>
+
+            </View>
+
+          </View>
+
+        </View>
       </View>
-
-
+      <TextWrapper style={styles.paymentHeader}>Payment Method</TextWrapper>
+      <View style={{ alignItems: 'center' }}>
+        <View style={styles.paymentbox}>
+          <TextWrapper style={styles.paymenttitle}>VISA</TextWrapper>
+        </View>
+      </View>
 
     </View >
   );

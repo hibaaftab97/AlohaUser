@@ -9,11 +9,9 @@ import TextWrapper from '../../../components/TextWrapper';
 import { Icons } from '../../../assets/images';
 import SubmitButton from '../../../components/Buttons/SubmitButton';
 import { Fonts } from '../../../assets/fonts';
-import { useDispatch } from 'react-redux';
 
 const AppointmentScreen = props => {
 
-  const dispatch = useDispatch();
   const [scheduleAppoint,setScheduleAppoint]=useState([])
   const [HistoryAppoint,setHistoryAppoint]=useState([])
   const [refreshing,setrefreshing]=useState(true)
@@ -34,21 +32,18 @@ const AppointmentScreen = props => {
     date: "01 April, 2022",
     amount: '$238.92',
     time: "04:20 PM",
-    service: 'BP - Blood Pressure'
+    service: 'BP - Blood Pressure',
+    status:"Completed",
+    id:"AP-001"
   },
   {
     date: "01 April, 2022",
     amount: '$238.92',
     time: "04:20 PM",
-    service: 'BP - Blood Pressure'
+    service: 'BP - Blood Pressure',
+    status:"Completed",
+    id:"AP-001"
 
-
-  },
-  {
-    date: "01 April, 2022",
-    amount: '$238.92',
-    time: "04:20 PM",
-    service: 'BP - Blood Pressure'
 
 
   },
@@ -56,7 +51,21 @@ const AppointmentScreen = props => {
     date: "01 April, 2022",
     amount: '$238.92',
     time: "04:20 PM",
-    service: 'BP - Blood Pressure'
+    service: 'BP - Blood Pressure',
+    status:"Completed",
+    id:"AP-001"
+
+
+
+  },
+  {
+    date: "01 April, 2022",
+    amount: '$238.92',
+    time: "04:20 PM",
+    service: 'BP - Blood Pressure',
+    status:"Completed",
+    id:"AP-001"
+
 
 
   },
@@ -80,12 +89,24 @@ const AppointmentScreen = props => {
         service:item?.service
       })}
       >
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+        <View style={{ 
+          borderBottomColor:'#EFE6E6',
+          borderWidth:0.2*vh,
+          borderTopColor:'transparent',
+          borderLeftColor:'transparent',
+          paddingBottom:vh,
+          borderRightColor:'transparent',
+          flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
 
           <View>
             <TextWrapper style={styles.title}>Date</TextWrapper>
             <TextWrapper style={styles.subtitle}>{item.date}</TextWrapper>
 
+          </View>
+          <View>
+            <TextWrapper style={styles.title}>Status</TextWrapper>
+
+            <TextWrapper style={styles.subtitle}>{item.status}</TextWrapper>
           </View>
           <View>
             <TextWrapper style={styles.title}>Time</TextWrapper>
@@ -97,17 +118,23 @@ const AppointmentScreen = props => {
 
         <View style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', }}>
 
-          <View>
+          <View >
             <TextWrapper style={styles.title}>Service Name</TextWrapper>
             <TextWrapper style={styles.subtitle}>{item.service}</TextWrapper>
+
+          </View>
+
+          <View >
+            <TextWrapper style={styles.title}>AP-ID</TextWrapper>
+            <TextWrapper style={styles.subtitle}>{item.id}</TextWrapper>
 
           </View>
 
           <View>
             <SubmitButton
               style={styles.submitButtonStyle}
-              textStyle={{ fontFamily: Fonts.Inter_SB, fontSize: 1.5 * vh }}
-              title="RESCHEDULE"
+              textStyle={{ fontFamily: Fonts.Poppins_Medium, fontSize: 1.5 * vh }}
+              title="View Results"
             />
           </View>
 
@@ -121,6 +148,7 @@ const AppointmentScreen = props => {
       <CommonHeader type='drawer'
         title="Appointments"
         profile />
+        <View style={styles.smallheader}>
       <View style={styles.headerbox}>
         <View style={{flexDirection:'row',}}>
         <TouchableOpacity 
@@ -137,6 +165,7 @@ const AppointmentScreen = props => {
         </TouchableOpacity>
         </View>
        
+      </View>
       </View>
       <FlatList
         data={list}

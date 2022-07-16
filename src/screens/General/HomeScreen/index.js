@@ -69,7 +69,7 @@ const HomeScreen = props => {
         renderItem={renderItem}
         contentContainerStyle={{ alignItems: 'center',paddingBottom: 10 * vh, }}
 
-        keyExtractor={item => item.id}
+        // keyExtractor={item => item.id}
         style={{ paddingBottom: 10 * vh, width: 100 * vw }}
         showsVerticalScrollIndicator={false}
       />

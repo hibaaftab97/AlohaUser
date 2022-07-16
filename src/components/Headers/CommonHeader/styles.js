@@ -13,8 +13,8 @@ export default style = StyleSheet.create({
 
   searchTextStyle: {
     alignSelf: 'center',
-    color:theme.primary,
-    fontFamily: Fonts.AR_extrabold,
+    color:theme.whiteBackground,
+    fontFamily: Fonts.Poppins_Bold,
     fontSize: 2.5 * vh,
   },
 
@@ -46,4 +46,9 @@ export default style = StyleSheet.create({
   drawerButtonView: {
     justifyContent: 'center',
   },
+  header:{
+    alignItems: 'center',
+    paddingBottom:4*vh,
+    backgroundColor:theme.primary,width:100*vw
+  }
 });

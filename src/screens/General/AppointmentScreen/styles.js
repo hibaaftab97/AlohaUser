@@ -6,18 +6,19 @@ import theme from '../../../utils/theme';
 const styles = StyleSheet.create({
 
   submitButtonStyle: {
-    width: 30 * vw,
+    width: 20 * vw,
     height:4*vh,
     marginTop: 3 * vh,
-    backgroundColor:theme.black
+    borderRadius: 1*vw,
+    backgroundColor:theme.primary
   },
   smallbox:{
     width: 38 * vw,
     backgroundColor: theme.primary,
     paddingHorizontal: 4 * vw,
-    paddingVertical: 1 * vh,
+    paddingVertical: 1.5 * vh,
     alignItems:'center',
-   borderRadius:vh,
+   borderRadius:4*vh,
     justifyContent:'center'
   },
   box: {
@@ -32,17 +33,23 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.5,
     borderRadius:1.5*vh,
+    borderColor:theme.primary,
+    borderWidth:0.2*vh,
     shadowRadius: 4 * vw,
     elevation: 4,
   },
   headerbox:{
     width: 80 * vw,
-    backgroundColor: '#eeeeee',
+    backgroundColor: theme.whiteBackground,
     paddingHorizontal: 2 * vw,
-    marginTop:3*vh,
-    paddingVertical: 1 * vh,
-   borderRadius:vh
+    // marginTop:3*vh,
+    paddingVertical: 1.5 * vh,
+   borderRadius:4*vh
    
+  },
+  smallheader:{
+    width:100*vw,backgroundColor:theme.primary,alignItems:'center',
+    paddingVertical:2*vh
   },
   scroll: {
     flex: 1,
@@ -56,19 +63,20 @@ const styles = StyleSheet.create({
     backgroundColor: theme.whiteBackground
   },
   title:{
-    color:'#aeaeae',
-    fontFamily:Fonts.AR_medium,
+    color:theme.primary,
+    fontFamily:Fonts.Poppins_Medium,
     fontSize:1.5*vh,
     textAlign:'left'
   },
   subtitle:{
     color:theme.black,
-    fontFamily:Fonts.AR_medium,
-    fontSize:2*vh
+    fontFamily:Fonts.Poppins_Medium,
+   
+    fontSize:1.7*vh
   },
   headertitle:{
     color:theme.whiteBackground,
-    fontFamily:Fonts.Inter_SB,
+    fontFamily:Fonts.Poppins_Regular,
     fontSize:1.5*vh
   },
   img:{

@@ -13,19 +13,33 @@ const HomeScreen = props => {
 
   const list = [{
     date: "01 April, 2022",
-    amount: '$238.92'
+    amount: '$238.92',
+    time:"04 : 20 pm",
+    service:"BP - Blood Pressure "
   },
   {
     date: "01 April, 2022",
-    amount: '$238.92'
+    amount: '$238.92',
+    time:"04 : 20 pm",
+    service:"BP - Blood Pressure "
+
+
   },
   {
     date: "01 April, 2022",
-    amount: '$238.92'
+    amount: '$238.92',
+    service:"BP - Blood Pressure ",
+
+    time:"04 : 20 pm"
+
   },
   {
     date: "01 April, 2022",
-    amount: '$238.92'
+    amount: '$238.92',
+    service:"BP - Blood Pressure ",
+
+    time:"04 : 20 pm"
+
   },
   ]
 
@@ -39,23 +53,38 @@ const HomeScreen = props => {
         props.navigation.navigate('PaymentDetailScreen')
       }
       }>
-         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-           <TextWrapper style={[styles.title,{color:index==activeIndex? theme.whiteBackground:'#aeaeae'}]}>Date</TextWrapper>
-           <TextWrapper style={[styles.title,{color:index==activeIndex? theme.whiteBackground:'#aeaeae'}]}>Amount</TextWrapper>
-          
-        </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+         <View style={styles.card}>
+           <View>
+           <TextWrapper style={[styles.title,{color:index==activeIndex? theme.whiteBackground:theme.primary}]}>Date</TextWrapper>
            <TextWrapper style={[styles.subtitle,{color:index==activeIndex? theme.whiteBackground:'#1d1f1f'}]}>{item.date}</TextWrapper>
-           <TextWrapper style={[styles.subtitle,{color:index==activeIndex? theme.whiteBackground:theme.primary}]}>{item.amount}</TextWrapper>
-          
+           
+           </View>
+           <View>
+           <TextWrapper style={[styles.title,{color:index==activeIndex? theme.whiteBackground:theme.primary}]}>Time</TextWrapper>
+
+           <TextWrapper style={[styles.subtitle,{color:index==activeIndex? theme.whiteBackground:theme.black}]}>{item.time}</TextWrapper>
+           </View>
         </View>
+        <View style={[styles.card,{marginTop:1*vh}]}>
+           <View>
+           <TextWrapper style={[styles.title,{color:index==activeIndex? theme.whiteBackground:theme.primary}]}>Service Name</TextWrapper>
+           <TextWrapper style={[styles.subtitle,{color:index==activeIndex? theme.whiteBackground:'#1d1f1f'}]}>{item.service}</TextWrapper>
+           
+           </View>
+           <View>
+           <TextWrapper style={[styles.title,{color:index==activeIndex? theme.whiteBackground:theme.primary}]}>Amount</TextWrapper>
+
+           <TextWrapper style={[styles.subtitle,{color:index==activeIndex? theme.whiteBackground:theme.black}]}>{item.amount}</TextWrapper>
+           </View>
+        </View>
+       
       </TouchableOpacity>
     )
   }
   return (
     <View style={styles.scroll}>
       <CommonHeader type='drawer'
-        title="Payment Logs"
+        title="Payment"
         profile />
       <FlatList
         data={list}

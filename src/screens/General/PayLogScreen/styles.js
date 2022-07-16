@@ -12,6 +12,8 @@ const styles = StyleSheet.create({
   box: {
     width: 80 * vw,
     backgroundColor: theme.whiteBackground,
+    borderColor:theme.primary,
+    borderWidth:0.2*vh,
     paddingHorizontal: 4 * vw,
     marginTop:3*vh,
     paddingVertical: 2 * vh,
@@ -36,14 +38,23 @@ const styles = StyleSheet.create({
     backgroundColor: theme.whiteBackground
   },
   title:{
-    color:'#aeaeae',
-    fontFamily:Fonts.AR_medium,
+    color:theme.primary,
+    fontFamily:Fonts.Poppins_Medium,
     fontSize:1.5*vh
   },
   subtitle:{
     color:'#aeaeae',
     fontFamily:Fonts.AR_medium,
-    fontSize:2*vh
+    fontSize:1.5*vh
+  },
+  card:{
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' ,
+    borderBottomColor:'#EFE6E6',
+    borderTopColor:'transparent',
+    borderLeftColor:'transparent',
+    borderRightColor:'transparent',
+    paddingBottom:2*vh,
+    borderWidth:0.2*vh,
   },
   img:{
     width:6*vw,

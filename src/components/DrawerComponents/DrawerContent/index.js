@@ -7,13 +7,8 @@ import TextWrapper from '../../TextWrapper';
 import { Icons } from '../../../assets/images';
 import theme from '../../../utils/theme';
 import { vh, vw } from '../../../units';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import DrawerButton from '../DrawerButton';
 import SubmitButton from '../../../components/Buttons/SubmitButton';
-import { showToast } from '../../../redux/Api/HelperFunction';
-import { _timeIn, timeOut } from '../../../redux/actions/TimeInOut';
-import { useDispatch } from 'react-redux';
-import moment from 'moment'
 
 
 const routeOrders = [
@@ -21,9 +16,6 @@ const routeOrders = [
   'AppointmentStack',
   'PaymentStack',
   'ProfileStack',
-
-
-
 ];
 const drawerRoutes = {
   HomeScreen: {
@@ -49,7 +41,6 @@ const drawerRoutes = {
 
 const DrawerContent = props => {
   const [timeIn, setTimein] = useState(false)
-  const dispatch = useDispatch();
 
 
   const handleOnDrawerItemPress = routeName => {
@@ -62,11 +53,11 @@ const DrawerContent = props => {
 
   const MarkTimeIn = () => {
 
-    let data = {
-      time: moment().format('hh:mm'),
-      date: moment().format('yy-MM-DD')
+    // let data = {
+    //   time: moment().format('hh:mm'),
+    //   date: moment().format('yy-MM-DD')
 
-    }
+    // }
     if (timeIn == true) {
       // dispatch(timeOut(data)).then(response => {
       //   console.log('response?.status', response);
@@ -78,7 +69,7 @@ const DrawerContent = props => {
       // });
     }
     else {
-      console.log('datttt', data);
+      // console.log('datttt', data);
 
       // dispatch(_timeIn(data)).then(response => {
       //   console.log('response?.status', response);
@@ -92,7 +83,7 @@ const DrawerContent = props => {
   }
 
 
-  const progress = useDrawerProgress();
+  // const progress = useDrawerProgress();
   // const opacity = Animated.interpolateNode(progress, {
   //   inputRange: [0, 1],
   //   outputRange: [-4, 1],
@@ -125,7 +116,7 @@ const DrawerContent = props => {
         <SubmitButton
           onPress={() => MarkTimeIn()}
           style={styles.submitButtonStyle}
-          title={data.commonReducer.attendance ? "Time Out" : "Time In"}
+          title={"Time Out"}
         />
         <SubmitButton
           style={styles.submitButtonStyle}

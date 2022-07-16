@@ -7,13 +7,11 @@ import TextWrapper from '../../../components/TextWrapper';
 import SubmitButton from '../../../components/Buttons/SubmitButton';
 import { Icons } from '../../../assets/images';
 import CommonHeader from '../../../components/Headers/CommonHeader';
-import { useDispatch } from 'react-redux';
 import ScrollWrapper from '../../../components/ScrollWrapper';
 import theme from '../../../utils/theme';
 
 
 const ProfileScreen = props => {
-  const dispatch = useDispatch();
 
   const [user, setUser] = useState(null);
 

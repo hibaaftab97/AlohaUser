@@ -42,10 +42,7 @@ const DrawerButton = props => {
   //   transform: [{translateX}],
   // };
   const routeConfigs = drawerRoutes[props.routeName];
-  console.log('DrawerButton :', routeConfigs);
-  if (!routeConfigs) {
-    return null;
-  }
+ 
   return (
     <TouchableOpacity
       onPress={() => props.onPress(props.routeName)}

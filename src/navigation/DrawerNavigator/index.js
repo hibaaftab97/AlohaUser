@@ -16,6 +16,7 @@ const DrawerNavigator = props => {
 
   return (
     <Drawer.Navigator
+    useLegacyImplementation={true}
       drawerContent={props => {
         return <DrawerContent {...props} />;
       }}

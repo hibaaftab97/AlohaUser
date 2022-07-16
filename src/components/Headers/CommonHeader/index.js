@@ -5,6 +5,7 @@ import styles from './styles';
 import { generalImages, Icons } from '../../../assets/images';
 import theme from '../../../utils/theme';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
+import { vw } from '../../../units';
 
 const CommonHeader = props => {
   const navigation = useNavigation();
@@ -38,7 +39,7 @@ const CommonHeader = props => {
     }
   };
   return (
-    <View style={{ alignItems: 'center', }}>
+    <View style={styles.header}>
       <View style={styles.searchView}>
         {renderHeaderButton()}
         <TextWrapper

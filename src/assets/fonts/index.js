@@ -7,7 +7,9 @@ module.exports = {
     Inter_SB: "Inter-SemiBold",
     Poppins_SB:"Poppins-SemiBold",
     Poppins_Bold:"Poppins-Bold",
-    Poppins_Regular:"Poppins-Regular"
+    Poppins_Regular:"Poppins-Regular",
+    Poppins_Medium:"Poppins-Medium"
+
 
   },
 };

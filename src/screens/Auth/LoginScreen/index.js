@@ -47,7 +47,7 @@ const LoginScreen = props => {
 
           <SubmitButton
           textStyle={{color:theme.primary}}
-            // onPress={handleLogin}
+            onPress={()=>props.navigation.navigate('DrawerNavigator')}
             style={styles.submitButtonStyle}
             title="LogIn"
           />

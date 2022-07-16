@@ -25,7 +25,7 @@ const PaymentDetailScreen = props => {
 
     upload: 'Uploaded by Smith Jhonson at 4:02 PM'
   },
- 
+
   ]
 
 
@@ -61,67 +61,62 @@ const PaymentDetailScreen = props => {
 
   const AppoinDetails = () => {
     return (
-      <View style={styles.box}>
+      <View style={{alignItems:'center'}}>
         <TextWrapper style={styles.headertitle}>Appointment Details</TextWrapper>
 
-        <View style={{}}>
-          <TextWrapper style={styles.title}>Date</TextWrapper>
-          <TextWrapper style={styles.subtitle}>01 April, 2022</TextWrapper>
-        </View>
-        <View style={{ marginTop: 2 * vh }}>
-          <TextWrapper style={styles.title}>Time</TextWrapper>
-          <TextWrapper style={styles.subtitle}>04:20 PM</TextWrapper>
-        </View>
-        <View style={{ marginTop: 2 * vh }}>
-          <TextWrapper style={styles.title}>Service Name</TextWrapper>
-          <TextWrapper style={styles.subtitle}>{props.route?.params?.service}</TextWrapper>
-        </View>
-        <View style={{ marginTop: 2 * vh }}>
-          <TextWrapper style={styles.title}>Amount</TextWrapper>
-          <TextWrapper style={[styles.subtitle, { color: theme.primary, fontSize: 2.5 * vh }]}>$238.92</TextWrapper>
+        <View style={styles.box}>
 
-        </View>
-        <View style={{ marginTop: 2 * vh }}>
-          <TextWrapper style={styles.title}>Payment Method</TextWrapper>
-          <TextWrapper style={styles.subtitle}>Master Card</TextWrapper>
-        </View>
+          <View style={styles.borderBox}>
+            <TextWrapper style={styles.title}>Date</TextWrapper>
+            <TextWrapper style={styles.subtitle}>01 April, 2022</TextWrapper>
+          </View>
+          <View style={style=[styles.borderBox,]}>
+            <TextWrapper style={styles.title}>Time</TextWrapper>
+            <TextWrapper style={styles.subtitle}>04:20 PM</TextWrapper>
+          </View>
+          <View style={style=[styles.borderBox]}>
+            <TextWrapper style={styles.title}>Service Name</TextWrapper>
+            <TextWrapper style={styles.subtitle}>{props.route?.params?.service}</TextWrapper>
+          </View>
+        
+        
 
 
+        </View>
       </View>
+
     )
   }
   const renderItem = ({ item, index }) => {
     return (
-     
-      <View style={{marginTop:2*vh}}>
-      <TextWrapper style={styles.title}>PDF</TextWrapper>
-      <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
-          <View>
-          <TextWrapper style={styles.subtitle}>{item.date}</TextWrapper>
-          <TextWrapper style={styles.uploadtext}>{item.upload}</TextWrapper>
+
+      <View style={style=[styles.borderBox,]}>
+        <TextWrapper style={styles.title}>PDF</TextWrapper>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <View >
+            <TextWrapper style={styles.subtitle}>{item.date}</TextWrapper>
 
           </View>
           <TouchableOpacity>
-          <Image  source={Icons.download}
-          style={styles.img}/>
+            <Image source={Icons.download}
+              style={styles.img} />
           </TouchableOpacity>
-        
+
+        </View>
       </View>
-    </View>
     )
   }
   const AttachDetails = () => {
     return (
       <View style={styles.box}>
-        <TextWrapper style={[styles.headertitle,{marginBottom:0}]}>Attachments</TextWrapper>
 
-       
+
         <FlatList
-        data={list}
-        renderItem={renderItem}
+          data={list}
+          renderItem={renderItem}
 
-        showsVerticalScrollIndicator={false}
-      />
+          showsVerticalScrollIndicator={false}
+        />
 
 
       </View>
@@ -133,22 +128,26 @@ const PaymentDetailScreen = props => {
       <CommonHeader
         title={props.route?.params?.service}
         profile />
-      <ScrollView 
-      showsVerticalScrollIndicator={false}
-      style={{flex:1,width:100*vw}}
-      contentContainerStyle={{alignItems:'center'}}>
-        {patientDetails()}
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{ flex: 1, width: 100 * vw }}
+        contentContainerStyle={{ alignItems: 'center' }}>
+        {/* {patientDetails()} */}
         {AppoinDetails()}
+        <TextWrapper style={[styles.headertitle, { marginBottom: 0 }]}>Attachments</TextWrapper>
+
         {AttachDetails()}
 
-        <View style={{ flexDirection: 'row',
-        paddingBottom:5*vh,alignItems:'center',justifyContent:'space-between' }}>
+        <View style={{
+          flexDirection: 'row',
+          paddingBottom: 5 * vh, alignItems: 'center', justifyContent: 'space-between'
+        }}>
           <View>
-         <IconButton  title="Upload"
-         icon={Icons.upload}/>
+            <IconButton title="Upload"
+              icon={Icons.upload} />
 
           </View>
-        
+
         </View>
       </ScrollView>
 

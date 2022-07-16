@@ -13,7 +13,9 @@ const styles = StyleSheet.create({
     width: 80 * vw,
     backgroundColor: theme.whiteBackground,
     paddingHorizontal: 4 * vw,
-    marginTop:3*vh,
+    borderColor:theme.primary,
+    borderWidth:0.2*vh,
+    marginTop:1*vh,
     paddingVertical: 2 * vh,
     shadowOffset: {
       width: 3,
@@ -55,15 +57,17 @@ justifyContent:'center',
     backgroundColor: theme.whiteBackground
   },
   title:{
-    color:'#aeaeae',
-    fontFamily:Fonts.AR_medium,
+    color:theme.primary,
+    fontFamily:Fonts.Poppins_Medium,
     fontSize:1.5*vh
   },
   headertitle:{
     color:theme.primary,
-    fontFamily:Fonts.Inter_SB,
-    marginBottom:2*vh,
-    fontSize:2*vh
+    fontFamily:Fonts.Poppins_Bold,
+    
+    marginTop:2*vh,
+
+    fontSize:2.5*vh
   },
   Icontitle:{
     color:'#969d9f',
@@ -73,13 +77,18 @@ justifyContent:'center',
   },
   subtitle:{
     color:theme.black,
-    fontFamily:Fonts.AR_medium,
-    fontSize:2*vh
+    fontFamily:Fonts.Poppins_Medium,
+    fontSize:1.7*vh
   },
   uploadtext:{
     color:'#4879ca',
     fontFamily:Fonts.AR_regular,
     fontSize:1.3*vh
+  },
+  borderBox:{
+    borderBottomColor:'#FFDFDF',borderWidth:0.3*vh,
+    paddingBottom:1*vh,
+    borderTopColor:'transparent',borderLeftColor:'transparent',borderRightColor:'transparent'
   },
   img:{
     width:6*vw,

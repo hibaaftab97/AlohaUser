@@ -2,8 +2,7 @@ import React from 'react';
 import { Platform, StatusBar, StyleSheet, UIManager, View } from 'react-native';
 import Navigator from './src/navigation/index';
 import theme from './src/utils/theme';
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/src/integration/react';
+
 
 if (
   Platform.OS === 'android' &&
