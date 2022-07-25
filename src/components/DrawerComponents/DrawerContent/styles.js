@@ -1,36 +1,48 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Fonts } from '../../../assets/fonts';
-import {vh, vw} from '../../../units';
+import { vh, vw } from '../../../units';
 import theme from '../../../utils/theme';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:'#707070',
+    backgroundColor: '#707070',
     borderBottomRightRadius: 10 * vw,
     borderTopRightRadius: 10 * vw,
   },
+  title: {
+    fontSize: 2.4 * vh,
+    color: 'white',
+    fontFamily: Fonts.Inter_SB
+  },
+  arrow:{
+    resizeMode: 'contain',
+    height: 3 * vh,
+    width: 3 * vw,
+    marginLeft: 2 * vh,
+    marginTop: 2 * vh
+
+  },
   routeContainer: {
     marginTop: 3 * vh,
-    borderTopColor:theme.primary,
-    borderLeftColor:'transparent',
-    borderRightColor:'transparent',
-    paddingTop:4*vh,
-    alignItems:'flex-end',
-    borderBottomColor:'transparent',
-    borderWidth:0.2*vh
-  
+    backgroundColor: theme.whiteBackground,
+    borderTopStartRadius: 5 * vw,
+    borderTopEndRadius: 5 * vw,
+
+    width: 100 * vw,
+    position:'absolute',
+    bottom:0,
   },
   submitButtonStyle: {
     width: 60 * vw,
     marginTop: 2 * vh,
-    
+
   },
-  logo:{
+  logo: {
     resizeMode: 'contain',
     height: 30 * vh,
     width: 30 * vw,
-    marginTop:2*vh
+    marginTop: 2 * vh
   },
   name: {
     fontSize: 2.4 * vh,
@@ -70,9 +82,9 @@ const styles = StyleSheet.create({
 
   label: {
     fontSize: 1.5 * vh,
-    fontFamily:Fonts.AR_medium,
+    fontFamily: Fonts.AR_medium,
     color: theme.black,
-    marginTop:2*vh
+    marginTop: 2 * vh
   },
 
   logoutButtonStyle: {

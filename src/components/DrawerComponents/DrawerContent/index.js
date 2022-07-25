@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './styles';
-import { Image, ImageBackground, View } from 'react-native';
+import { Image, ImageBackground, TouchableOpacity, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { useDrawerProgress, DrawerContentScrollView, } from '@react-navigation/drawer';
 import TextWrapper from '../../TextWrapper';
@@ -9,38 +9,55 @@ import theme from '../../../utils/theme';
 import { vh, vw } from '../../../units';
 import DrawerButton from '../DrawerButton';
 import SubmitButton from '../../../components/Buttons/SubmitButton';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
 
 
 const routeOrders = [
   'HomeScreen',
+  'ServicesStack',
+  'ShopStack',
   'AppointmentStack',
   'PaymentStack',
   'ProfileStack',
+  'HelpStack',
 ];
 const drawerRoutes = {
   HomeScreen: {
     label: 'Home',
     icon: Icons.drawer1,
   },
-
-  AppointmentStack: {
-    label: 'About',
+  ServicesStack: {
+    label: 'Services',
     icon: Icons.drawer2,
+  },
+  ShopStack: {
+    label: 'Shop',
+    icon: Icons.drawer3,
+  },
+  AppointmentStack: {
+    label: 'All Appointments',
+    icon: Icons.drawer4,
   },
 
   PaymentStack: {
-    label: 'Pay Logs',
-    icon: Icons.drawer3,
+    label: 'Payments',
+    icon: Icons.drawer5,
   },
   ProfileStack: {
-    label: 'My Profile',
-    icon: Icons.drawer4,
+    label: 'Profile',
+    icon: Icons.drawer6,
   },
+  HelpStack: {
+    label: 'Help',
+    icon: Icons.drawer7,
+  },
+
 };
 
 
 const DrawerContent = props => {
   const [timeIn, setTimein] = useState(false)
+  const navigation = useNavigation();
 
 
   const handleOnDrawerItemPress = routeName => {
@@ -51,55 +68,29 @@ const DrawerContent = props => {
     }
   };
 
-  const MarkTimeIn = () => {
 
-    // let data = {
-    //   time: moment().format('hh:mm'),
-    //   date: moment().format('yy-MM-DD')
-
-    // }
-    if (timeIn == true) {
-      // dispatch(timeOut(data)).then(response => {
-      //   console.log('response?.status', response);
-      //   if (response.status==true) {
-      //     showToast(response.message)
-
-      //     setTimein(!timeIn)
-      //   }
-      // });
-    }
-    else {
-      // console.log('datttt', data);
-
-      // dispatch(_timeIn(data)).then(response => {
-      //   console.log('response?.status', response);
-      //   if (response.status==true) {
-      //     showToast(response.message)
-      //     setTimein(!timeIn)
-
-      //   }
-      // });
-    }
-  }
-
-
-  // const progress = useDrawerProgress();
-  // const opacity = Animated.interpolateNode(progress, {
-  //   inputRange: [0, 1],
-  //   outputRange: [-4, 1],
-  // });
 
   return (
     <DrawerContentScrollView
       {...props}
-      contentContainerStyle={styles.drawerScrollView}>
-      <ImageBackground source={Icons.drawerbg}
+      contentContainerStyle={{ backgroundColor: theme.primary, flex: 1 }}>
+      {/* <ImageBackground source={Icons.drawerbg}
         imageStyle={{ width: 80 * vw, height: 50 * vh }}
         resizeMode='cover'
         style={{ width: 80 * vw, height: 20 * vh, alignItems: 'center', justifyContent: 'center' }}>
         <Image source={Icons.logo}
           style={styles.logo} />
-      </ImageBackground>
+      </ImageBackground> */}
+<TouchableOpacity onPress={()=> navigation.dispatch(DrawerActions.toggleDrawer())}>
+<Image source={Icons.leftArrow} 
+      style={styles.arrow}/>
+</TouchableOpacity>
+   
+      <View style={{ alignItems: 'center' }}>
+        <Image style={styles.searchIconStyle} source={Icons.profile} />
+        <TextWrapper style={styles.title}>John Doe</TextWrapper>
+
+      </View>
 
       <View style={styles.routeContainer}>
         {routeOrders.map((item, index) => {
@@ -112,19 +103,7 @@ const DrawerContent = props => {
           );
         })}
       </View>
-      <View style={{ alignItems: 'center', marginTop: 10 * vh }}>
-        <SubmitButton
-          onPress={() => MarkTimeIn()}
-          style={styles.submitButtonStyle}
-          title={"Time Out"}
-        />
-        <SubmitButton
-          style={styles.submitButtonStyle}
-          title="Log Out"
-        />
-        <TextWrapper style={styles.label}>© 2022 Aloha Express Medical. All Rights Reserved</TextWrapper>
 
-      </View>
 
     </DrawerContentScrollView>
   );

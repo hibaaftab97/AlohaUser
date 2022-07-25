@@ -9,6 +9,8 @@ import { Icons } from '../../../assets/images';
 import CommonHeader from '../../../components/Headers/CommonHeader';
 
 import ScrollWrapper from '../../../components/ScrollWrapper';
+import GeneralTextInput from '../../../components/TextInputs/GeneralTextInput';
+import theme from '../../../utils/theme';
 
 
 const ProfileScreen = props => {
@@ -26,51 +28,55 @@ const ProfileScreen = props => {
       <View style={styles.fieldContainer}>
 
         <View style={styles.miniContainer}>
-          <View>
-            <Image source={Icons.profile}
-              style={styles.img} />
-            <View style={styles.circle}>
-              <Image source={Icons.camera}
-                style={styles.imgIcon} />
-            </View>
+         
 
-          </View>
-
-          <TextWrapper style={styles.shortdes}>Smith Johnson</TextWrapper>
-
+<TextWrapper  style={styles.edit}>Edit Profile</TextWrapper>
           <View style={styles.fieldsView}>
-            <AuthTextInput
-              value={fName}
-              icon
-              onChangeText={text => setfName(text)}
-              placeHolder=" First Name"
-            />
-            <AuthTextInput
-              value={lName}
-              icon
-              onChangeText={text => setlName(text)}
-              placeHolder="Last Name"
+          <GeneralTextInput
+            // value={password}
+            conStyle={{alignItems:'center'}}
+            // onChangeText={text => setPassword(text)}
+            placeHolder="First Name"
+            placeholderTextColor={theme.primary}
+            inputViewStyle={{textAlign:'center',color:theme.primary,justifyContent:'center'}}
+          
+          />
+            <GeneralTextInput
+               // value={password}
+               conStyle={{alignItems:'center'}}
+               // onChangeText={text => setPassword(text)}
+               placeHolder="Last Name"
+               placeholderTextColor={theme.primary}
+               inputViewStyle={{textAlign:'center',color:theme.primary}}
 
             />
-            <AuthTextInput
-              value={email}
-              icon
-              onChangeText={text => setemail(text)}
-              placeHolder="Email address"
+             <GeneralTextInput
+               // value={password}
+               conStyle={{alignItems:'center'}}
+               // onChangeText={text => setPassword(text)}
+               placeHolder="Email Address"
+               placeholderTextColor={theme.primary}
+               inputViewStyle={{textAlign:'center',color:theme.primary}}
 
             />
-            <AuthTextInput
-              value={password}
-              icon
-              onChangeText={text => setPassword(text)}
-              placeHolder="Password"
+           <GeneralTextInput
+               // value={password}
+               conStyle={{alignItems:'center'}}
+               // onChangeText={text => setPassword(text)}
+               secureTextEntry
+               placeHolder="Password"
+               placeholderTextColor={theme.primary}
+               inputViewStyle={{textAlign:'center',color:theme.primary}}
 
             />
-            <AuthTextInput
-              value={confirmpassword}
-              icon
-              onChangeText={text => setconfirmPassword(text)}
-              placeHolder="Confirm password"
+             <GeneralTextInput
+               // value={password}
+               conStyle={{alignItems:'center'}}
+               secureTextEntry
+               // onChangeText={text => setPassword(text)}
+               placeHolder="Confirm Password"
+               placeholderTextColor={theme.primary}
+               inputViewStyle={{textAlign:'center',color:theme.primary}}
 
             />
           </View>
@@ -92,20 +98,31 @@ const ProfileScreen = props => {
       <ScrollWrapper avoidKeyboard={true}
         contentContainerStyle={styles.content}>
 
-        <ImageBackground
+        {/* <ImageBackground
           style={{
             width: 100 * vw, height: 100 * vh
 
           }}
           resizeMode='cover'
           imageStyle={styles.scroll}
-          source={require('../../../assets/images/ProfileBG.png')}>
+          source={require('../../../assets/images/ProfileBG.png')}> */}
           <CommonHeader
-            edit
+            
           />
+           <View  style={{alignItems:'center'}}>
+            <Image source={Icons.profile}
+              style={styles.img} />
+            <View style={styles.circle}>
+              <Image source={Icons.camera}
+                style={styles.imgIcon} />
+            </View>
+
+          </View>
+          <TextWrapper style={styles.shortdes}>Smith Johnson</TextWrapper>
+
           {renderFields()}
 
-        </ImageBackground>
+        {/* </ImageBackground> */}
       </ScrollWrapper>
     </View>
 

@@ -11,11 +11,11 @@ function ProfileStack() {
   const Stack = createStackNavigator();
   return (
     <Stack.Navigator>
-      <Stack.Screen
+      {/* <Stack.Screen
         options={{headerShown: false}}
         name="ProfileScreen"
         component={ProfileScreen}
-      /> 
+      />  */}
       <Stack.Screen
         options={{headerShown: false}}
         name="EditProfileScreen"

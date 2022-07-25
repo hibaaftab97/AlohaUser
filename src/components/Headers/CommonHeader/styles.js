@@ -40,6 +40,7 @@ export default style = StyleSheet.create({
   drawerIconStyle: {
     resizeMode: 'contain',
     height: 6 * vw,
+    tintColor:theme.whiteBackground,
     width: 6 * vw,
   },
 

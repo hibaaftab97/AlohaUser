@@ -16,15 +16,19 @@ const styles = StyleSheet.create({
       position:'absolute',
       alignItems:'center',
       justifyContent:'center',
-      right:2*vw,
+      left:55*vw,
+    marginRight:2*vw,
       bottom:0,
       backgroundColor:theme.primary
   },
   fieldContainer: {
-    // backgroundColor: theme.whiteBackground,
-    paddingVertical: 6 * vh,
+    backgroundColor: theme.whiteBackground,
+    paddingVertical: 3 * vh,
     width: 100 * vw,
     borderTopRightRadius: 15 * vw,
+    borderTopLeftRadius: 15 * vw,
+    marginTop:vh,
+
   },
   scroll: {
     flex: 1,
@@ -33,22 +37,23 @@ const styles = StyleSheet.create({
   content: {
     // alignItems: 'flex-end',
     // justifyContent:'flex-end'
+    backgroundColor:theme.primary
   },
   shortdes: {
-    color: theme.black,
+    color: theme.whiteBackground,
     fontSize: 2.5 * vh,
     textAlign: 'center',
 
     marginTop:1.5*vh,
-    fontFamily: Fonts.AR_regular
+    fontFamily: Fonts.Inter_SB
 
   },
   des: {
-    color: theme.primary,
+    color: theme.whiteBackground,
     fontSize: 2 * vh,
     textAlign: 'center',
     marginTop: 1 * vh,
-    fontFamily: Fonts.AR_medium
+    fontFamily: Fonts.Inter_SB
 
   },
   img: {
@@ -68,5 +73,11 @@ const styles = StyleSheet.create({
     width: 80 * vw,
     alignSelf: 'center',
   },
+  edit:{
+    color: theme.primary,
+    fontSize: 2 * vh,
+    textAlign: 'center',
+    fontFamily: Fonts.Poppins_Bold
+  }
 });
 export default styles;

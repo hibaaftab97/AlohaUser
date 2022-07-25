@@ -1,80 +1,123 @@
 import React, { useState } from 'react';
-import { View, FlatList, LayoutAnimation, ImageBackground, Image ,TouchableOpacity} from 'react-native';
+import { View, FlatList, LayoutAnimation, ImageBackground, Image, TouchableOpacity, ScrollView } from 'react-native';
 import styles from './styles';
 import { vh, vw } from '../../../units';
 import CommonHeader from '../../../components/Headers/CommonHeader';
 import theme from '../../../utils/theme';
 import ScrollWrapper from '../../../components/ScrollWrapper';
 import TextWrapper from '../../../components/TextWrapper';
-import { Icons } from '../../../assets/images';
+import { Icons, generalImages } from '../../../assets/images';
+import ShopCard from '../../../components/ShopCard';
+import ServiceCard from '../../../components/ServiceCard';
+// import StarRating from 'react-native-star-rating';
 
 
 const HomeScreen = props => {
 
   const list = [{
-    title: "All Appointments",
-    image: Icons.appoint
+    title: "KN95 Masks",
+    image: generalImages.shop1,
+    price: "$149"
   },
   {
-    title: "Latest Appointments",
-    image: Icons.appoint
+    title: "Facial Cleansing Brush",
+    image: generalImages.shop2,
+    price: "$149"
+
   },
   {
-    title: "Completed Appointments",
-    image: Icons.appoint
+    title: "Led Face Mask Light Therapy",
+    image: generalImages.shop3,
+    price: "$149"
+
+  },
+
+  ]
+  const services = [{
+    title: "COVID-19",
+    image: generalImages.service1,
+    price: "$149"
   },
   {
-    title: "Incomplete Appointments",
-    image: Icons.appoint
+    title: "Specialty Blood Draw",
+    image: generalImages.service2,
+    price: "$149"
+
   },
+  {
+    title: "Urine Drug Screen",
+    image: generalImages.service3,
+    price: "$149"
+
+  },
+
   ]
 
-  const [activeIndex,setActive]=useState(-1)
+  const [activeIndex, setActive] = useState(-1)
   const renderItem = ({ item, index }) => {
     return (
-      <TouchableOpacity style={[styles.box,{backgroundColor:index==activeIndex?theme.primary:theme.whiteBackground}]}
-      onPress={()=>
-      {
-        setActive(index)
-        props.navigation.navigate('AppointmentStack',{
-          params:{
-            check:index
-          }
-        })
-      }
-     }>
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-          <TextWrapper style={[styles.title,{color:index==activeIndex? theme.whiteBackground:'#aeaeae'}]}>{item.title}</TextWrapper>
-          {index==activeIndex&&<Image source={Icons.appoint}
-            style={styles.img} />}
-        </View>
-      </TouchableOpacity>
+      <ShopCard item={item} />
+    )
+  }
+
+  const renderServiceItem = ({ item, index }) => {
+    return (
+      <ServiceCard item={item} />
     )
   }
   return (
     <View style={styles.scroll}>
-      <CommonHeader type='drawer'
-        title="Home"
-        profile />
-        <ImageBackground  source={Icons.banner} 
-        resizeMode='cover'
-        imageStyle={{width:80*vw,height:35*vw,borderRadius:2*vh}}
-        style={{width:80*vw,height:35*vw,justifyContent:'center'}}>
+      <ScrollView>
+        <CommonHeader type='drawer'
+          title="Home"
+          cart />
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
           <TextWrapper style={styles.bannertitle}>We Provide Fast &  Reliable Medical Testing  Services</TextWrapper>
+          <Image source={generalImages.banner}
+            resizeMode='contain'
+            style={{ width: 40 * vw, height: 40 * vw, }} />
+        </View>
 
 
-        </ImageBackground>
-      <FlatList
-        data={list}
-        renderItem={renderItem}
-        contentContainerStyle={{ alignItems: 'center',paddingBottom: 10 * vh, }}
 
-        // keyExtractor={item => item.id}
-        style={{ paddingBottom: 10 * vh, width: 100 * vw }}
-        showsVerticalScrollIndicator={false}
-      />
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: 95 * vw, marginTop: 5 * vh }}>
+          <View>
 
+          </View>
+          <TextWrapper style={styles.header}>Shops</TextWrapper>
+          <TextWrapper style={styles.view}>View All</TextWrapper>
 
+        </View>
+        <FlatList
+          data={list}
+          renderItem={renderItem}
+          horizontal
+          contentContainerStyle={{ alignItems: 'center', paddingBottom: 5 * vh }}
+
+          // keyExtractor={item => item.id}
+          style={{ width: 100 * vw, paddingBottom: 1 * vh }}
+          showsVerticalScrollIndicator={false}
+        />
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: 95 * vw, marginTop: 1 * vh }}>
+          <View>
+
+          </View>
+          <TextWrapper style={styles.header}>Services</TextWrapper>
+          <TextWrapper style={styles.view}>View All</TextWrapper>
+
+        </View>
+        <FlatList
+          data={services}
+          renderItem={renderServiceItem}
+          horizontal
+          contentContainerStyle={{ alignItems: 'center', paddingBottom: 5 * vh }}
+
+          // keyExtractor={item => item.id}
+          style={{ width: 100 * vw, paddingBottom: 5 * vh }}
+          showsVerticalScrollIndicator={false}
+        />
+
+      </ScrollView>
 
     </View >
   );

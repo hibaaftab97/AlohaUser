@@ -9,6 +9,10 @@ import PaymentStack from '../PaymentStack';
 import ProfileStack from '../ProfileStack';
 
 import { vh, vw } from '../../units';
+import ServicesStack from '../ServicesStack';
+import ShopStack from '../ShopStack';
+import HelpStack from '../HelpStack';
+
 
 const Drawer = createDrawerNavigator();
 
@@ -16,7 +20,7 @@ const DrawerNavigator = props => {
 
   return (
     <Drawer.Navigator
-    useLegacyImplementation={true}
+      useLegacyImplementation={true}
       drawerContent={props => {
         return <DrawerContent {...props} />;
       }}
@@ -24,23 +28,29 @@ const DrawerNavigator = props => {
         headerShown: false,
         overlayColor: 'transparent',
         drawerStyle: {
-          width: 80 * vw,
+          width: 100 * vw,
           shadowOffset: {
             width: 5,
             height: 5,
           },
           shadowOpacity: 0.5,
-          borderRadius:1.5*vh,
+          borderRadius: 1.5 * vh,
           shadowRadius: 4 * vw,
           elevation: 10,
         },
         sceneContainerStyle: { backgroundColor: 'black' },
       }}>
       <Drawer.Screen name="HomeScreen" component={HomeScreen} />
+      <Drawer.Screen name="ServicesStack" component={ServicesStack} />
+      <Drawer.Screen name="ShopStack" component={ShopStack} />
+
+
       <Drawer.Screen name="AppointmentStack" component={AppointmentStack} />
       <Drawer.Screen name="PaymentStack" component={PaymentStack} />
       <Drawer.Screen name="ProfileStack" component={ProfileStack} />
-      
+      <Drawer.Screen name="HelpStack" component={HelpStack} />
+
+
     </Drawer.Navigator>
   );
 };

@@ -9,12 +9,19 @@ const styles = StyleSheet.create({
     width: 40 * vw,
     marginTop: 3 * vh,
   },
+  img:{
+    width:35*vw,
+    height:15*vh,
+    resizeMode:'contain'
+  },
   box: {
-    width: 80 * vw,
+    // width: 80 * vw,
     backgroundColor: theme.whiteBackground,
     paddingHorizontal: 4 * vw,
     marginTop:3*vh,
-    paddingVertical: 2 * vh,
+    marginLeft:4*vw,
+    // paddingVertical: 2 * vh,
+    alignItems:'center',
     shadowOffset: {
       width: 3,
       height: 3,
@@ -35,22 +42,28 @@ const styles = StyleSheet.create({
     // justifyContent:'flex-end'
     backgroundColor: theme.whiteBackground
   },
+  header:{
+    color:theme.primary,
+    fontFamily:Fonts.Poppins_Bold,
+    fontSize:2.3*vh
+  },
+  view:{
+    color:theme.black,
+    fontFamily:Fonts.Poppins_Medium,
+    fontSize:1.7*vh
+  },
   title:{
-    color:'#aeaeae',
-    fontFamily:Fonts.AR_medium,
+    color:'#1E2022',
+    fontFamily:Fonts.Poppins_Regular,
     fontSize:2*vh
   },
   bannertitle:{
-    color:theme.black,
-    fontFamily:Fonts.AR_extrabold,
+    color:theme.primary,
+    fontFamily:Fonts.Poppins_SB,
     width:50*vw,
-    fontSize:2*vh
+    fontSize:2.5*vh
   },
-  img:{
-    width:6*vw,
-    height:6*vw,
-    resizeMode:'contain'
-  }
+ 
 
 });
 export default styles;

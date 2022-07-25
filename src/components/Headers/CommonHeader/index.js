@@ -27,11 +27,7 @@ const CommonHeader = props => {
             source={Icons.leftArrow}
             style={[
               styles.drawerIconStyle,
-              {
-                tintColor: props?.tintColor
-                  ? props?.tintColor
-                  : theme.black,
-              },
+            
             ]}
           />
         </TouchableOpacity>
@@ -49,20 +45,32 @@ const CommonHeader = props => {
         </TextWrapper>
 
         <View style={styles.searchIconsView}>
-          <TouchableOpacity
-            onPress={props.onPress}
-            style={styles.searchIconButtonView}>
+         
             {props.profile ? (
 
-              <TouchableOpacity onPress={()=>{navigation.navigate('ProfileStack')}}>
+              <TouchableOpacity onPress={()=>{
+                if(props.edit){
+                  navigation.navigate('ProfileStack')
+                }
+               
+                }}>
                 <Image style={styles.searchIconStyle} source={Icons.profile} />
 
               </TouchableOpacity>
             ) : props.edit ? (
               <Image style={styles.searchIconStyle} source={Icons.edit} />
-            ) : null}
+            ) : props.cart?(
+              <TouchableOpacity onPress={()=>{
+                if(props.cart){
+                  navigation.navigate('CartScreen')
+                }
+               
+                }}>
+              <Image style={styles.searchIconStyle} source={Icons.cart} />
+              </TouchableOpacity>
+
+            ):null}
             {/* <Image style={styles.searchIconStyle} source={icons.search} /> */}
-          </TouchableOpacity>
         </View>
       </View>
     </View>
