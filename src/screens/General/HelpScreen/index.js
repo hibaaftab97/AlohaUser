@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Dimensions, Image,TouchableOpacity, ImageBackground, Text } from 'react-native';
+import { View, Dimensions, Image, TouchableOpacity, ImageBackground, Text } from 'react-native';
 import styles from './styles';
 import { vh, vw } from '../../../units';
 import AuthTextInput from '../../../components/TextInputs/AuthTextInput';
@@ -15,39 +15,39 @@ import DrawerButton from '../../../components/DrawerComponents/DrawerButton';
 
 
 const HelpScreen = props => {
- 
+
 
   const routeOrders = [
     {
-      name:"TermScreen",
-      icon:Icons.help1,
-      routeName:"ConactUsScreen"
+      name: "Terms and Conditions",
+      icon: Icons.help1,
+      routeName: "TermsConditionScreen"
     },
     {
-      name:"ContactUsScreen",
-      icon:Icons.help2,
-      routeName:"ConactUsScreen"
+      name: "Contact Support",
+      icon: Icons.help2,
+      routeName: "ConactUsScreen"
 
     },
     {
-      name:"PrivacyScreen",
-      icon:Icons.help3,
-      routeName:"ConactUsScreen"
+      name: "Privacy Policies",
+      icon: Icons.help3,
+      routeName: "PrivacyPolicyScreen"
 
     },
     {
-      name:"FaqScreen",
-      icon:Icons.help4,
-      routeName:"ConactUsScreen"
+      name: "FAQ",
+      icon: Icons.help4,
+      routeName: "FaqScreen"
 
     },
-  
+
   ];
   const [password, setPassword] = useState('');
   const [confirmpassword, setconfirmPassword] = useState('');
 
 
- 
+
   return (
     <View style={{ flex: 1, backgroundColor: 'white' }}>
 
@@ -62,30 +62,35 @@ const HelpScreen = props => {
           resizeMode='cover'
           imageStyle={styles.scroll}
           source={require('../../../assets/images/ProfileBG.png')}> */}
-          <CommonHeader
-            title="Help"
-          />
-           <View style={styles.routeContainer}>
-        {routeOrders.map((item, index) => {
-          return (
-            <TouchableOpacity
-            onPress={() => props.navigation.navigate(item.routeName)}
-            style={[styles.container]}>
-            <View style={{ flexDirection: 'row',alignItems:'center',justifyContent:'space-between' }}>
-              <View style={{flexDirection:'row',alignItems:'center'}}>
-                <Image style={styles.icon} source={item.icon} />
-                <TextWrapper style={styles.label}>{item.name}</TextWrapper>
-              </View>
-              <Image style={styles.righticon} source={Icons.rightArrow} />
-      
-            </View>
-      
-      
-      
-          </TouchableOpacity>
-          );
-        })}
-</View>
+        <CommonHeader
+          title="Help"
+        />
+        <View style={styles.routeContainer}>
+          {routeOrders.map((item, index) => {
+            return (
+              <TouchableOpacity
+                onPress={() => props.navigation.navigate(item.routeName)}
+                style={[styles.container]}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Image style={styles.icon} source={item.icon} />
+                    <TextWrapper style={styles.label}>{item.name}</TextWrapper>
+                  </View>
+                  <Image style={styles.righticon} source={Icons.rightArrow} />
+
+                </View>
+
+
+
+              </TouchableOpacity>
+            );
+          })}
+           <SubmitButton
+          style={styles.acceptButton}
+          title="Log Out"
+        />
+        </View>
+       
         {/* </ImageBackground> */}
       </ScrollWrapper>
     </View>

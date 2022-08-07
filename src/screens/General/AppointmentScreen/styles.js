@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     backgroundColor:theme.primary
   },
   smallbox:{
-    width: 38 * vw,
+    width: 40 * vw,
     backgroundColor: theme.primary,
     paddingHorizontal: 4 * vw,
     paddingVertical: 1.5 * vh,
@@ -39,12 +39,12 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   headerbox:{
-    width: 80 * vw,
+    width: 85 * vw,
     backgroundColor: theme.whiteBackground,
     paddingHorizontal: 2 * vw,
     // marginTop:3*vh,
-    paddingVertical: 1.5 * vh,
-   borderRadius:4*vh
+    paddingVertical: 1 * vh,
+   borderRadius:10*vh
    
   },
   smallheader:{
@@ -76,8 +76,8 @@ const styles = StyleSheet.create({
   },
   headertitle:{
     color:theme.whiteBackground,
-    fontFamily:Fonts.Poppins_Regular,
-    fontSize:1.5*vh
+    fontFamily:Fonts.Poppins_SB,
+    fontSize:2*vh
   },
   img:{
     width:6*vw,

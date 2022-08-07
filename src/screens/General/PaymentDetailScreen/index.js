@@ -35,7 +35,7 @@ const PaymentDetailScreen = props => {
     <View style={styles.scroll}>
       <CommonHeader
         title="Payment Details"
-        profile />
+         />
       <View style={{ alignItems: 'center' }}>
         <View style={styles.box}>
           <View style={styles.rowCon}>

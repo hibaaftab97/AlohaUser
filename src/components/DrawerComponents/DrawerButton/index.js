@@ -28,6 +28,10 @@ const drawerRoutes = {
 
   PaymentStack: {
     label: 'Payments',
+    icon: Icons.drawer8,
+  },
+  orderStack: {
+    label: 'Order Summary',
     icon: Icons.drawer5,
   },
   ProfileStack: {

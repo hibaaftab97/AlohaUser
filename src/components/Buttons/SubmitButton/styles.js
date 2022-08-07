@@ -10,7 +10,7 @@ export default style = StyleSheet.create({
     backgroundColor: theme.primary,
     borderRadius: 4 * vh,
     
-    height: 7 * vh,
+    height: 6 * vh,
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',

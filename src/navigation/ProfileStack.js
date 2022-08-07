@@ -3,7 +3,7 @@ import {Easing} from 'react-native';
 import 'react-native-gesture-handler';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import ProfileScreen from '../screens/General/ProfileScreen';
+import ViewProfileScreen from '../screens/General/ViewProfileScreen';
 import EditProfileScreen from '../screens/General/EditProfileScreen';
 
 
@@ -11,11 +11,11 @@ function ProfileStack() {
   const Stack = createStackNavigator();
   return (
     <Stack.Navigator>
-      {/* <Stack.Screen
+      <Stack.Screen
         options={{headerShown: false}}
-        name="ProfileScreen"
-        component={ProfileScreen}
-      />  */}
+        name="ViewProfileScreen"
+        component={ViewProfileScreen}
+      /> 
       <Stack.Screen
         options={{headerShown: false}}
         name="EditProfileScreen"

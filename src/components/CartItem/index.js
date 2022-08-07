@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, Image } from 'react-native';
 import TextWrapper from '../TextWrapper';
 import styles from './styles';
 import Quantity from '../Quantity'
+import { Icons } from '../../assets/images';
 
 const CartItem = props => {
     return (
@@ -20,7 +21,8 @@ const CartItem = props => {
                 </View>
             </View>
 
-
+<Image  source={Icons.delete}
+style={styles.deleIcon}/>
 
 
         </TouchableOpacity>

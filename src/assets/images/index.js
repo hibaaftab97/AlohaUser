@@ -16,8 +16,20 @@ export const Icons = {
   drawer5: require('./icons/drawer5.png'),
   drawer6: require('./icons/drawer6.png'),
   drawer7: require('./icons/drawer7.png'),
+  drawer8: require('./icons/drawer8.png'),
+
   cart: require('./icons/cart.png'),
+  homecart: require('./icons/homecart.png'),
+
+  uparrow: require('./icons/uparrow.png'),
+  delete: require('./icons/delete.png'),
+  homeBg: require('./icons/homeBg.png'),
+
+
+
   minus: require('./icons/minus.png'),
+  serviceDetail: require('./icons/serviceDetail.png'),
+
   plus: require('./icons/plus.png'),
   help1: require('./icons/help1.png'),
   help2: require('./icons/help2.png'),

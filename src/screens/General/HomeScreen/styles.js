@@ -33,9 +33,8 @@ const styles = StyleSheet.create({
   },
   scroll: {
     flex: 1,
-    backgroundColor: theme.whiteBackground,
-    alignItems:'center'
-
+    alignItems:'center',
+backgroundColor:'white'
   },
   content: {
     alignItems: 'center',

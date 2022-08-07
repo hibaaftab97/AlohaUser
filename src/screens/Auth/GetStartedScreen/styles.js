@@ -57,7 +57,8 @@ const styles = StyleSheet.create({
   },
   des: {
     color: theme.whiteBackground,
-    fontSize: 2 * vh,
+    fontSize: 1.7 * vh,
+    width:60*vw,
     textAlign: 'center',
     marginTop: 1 * vh,
     fontFamily: Fonts.Poppins_Regular

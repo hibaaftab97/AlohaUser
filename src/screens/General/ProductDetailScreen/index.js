@@ -16,25 +16,7 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 
 const ProductDetailScreen = props => {
 
-  const list = [{
-    title: "All Appointments",
-    image: generalImages.shop1,
-    price: "$149"
-  },
-  {
-    title: "Latest Appointments",
-    image: generalImages.shop2,
-    price: "$149"
-
-  },
-  {
-    title: "Completed Appointments",
-    image: generalImages.shop3,
-    price: "$149"
-
-  },
-
-  ]
+  
   const slider = [{
     image: generalImages.carousel,
 
@@ -53,6 +35,11 @@ const ProductDetailScreen = props => {
  
 
   ]
+
+  const colors=[{
+    name:'#000000'
+  },]
+  
   const [activeSlide, setActiveSlide] = useState(1);
 
   const renderSlideBanner = () => {
@@ -103,7 +90,13 @@ style={{backgroundColor:'red'}}
     );
   };
   const [activeIndex, setActive] = useState(-1)
+  const renderServiceItem = ({ item, index }) => {
+    return (
+     <View  style={[styles.circle,{backgroundColor:item?.name}]}>
 
+     </View>
+    )
+  }
   return (
     <View style={styles.scroll}>
       <CommonHeader
@@ -117,10 +110,28 @@ style={{backgroundColor:'red'}}
       <TextWrapper style={styles.price}>$12</TextWrapper>
 
       </View>
-  
+      <View style={{ paddingHorizontal: 4 * vw }}>
+        <TextWrapper style={styles.cat}>Colors</TextWrapper>
+        <FlatList
+          data={colors}
+          renderItem={renderServiceItem}
+          horizontal
+          contentContainerStyle={{ alignItems: 'center', paddingBottom: 1 * vh }}
+
+          // keyExtractor={item => item.id}
+          style={{ width: 100 * vw, paddingBottom: 1 * vh }}
+          showsHorizontalScrollIndicator={false}
+        />      
+      </View>
       <View style={{ paddingHorizontal: 4 * vw }}>
         <TextWrapper style={styles.cat}>Descriptions</TextWrapper>
-        <TextWrapper style={styles.des}>Curabitur ac sapien in mi auctor efficitur. In hac an habitasse platea dictumst. Pellentesque vel shoes tempor leo. Sed porta, quam in hendrerit finibus, a orci est condimentum urna, ac molestie metus leo.</TextWrapper>
+        <TextWrapper style={styles.des}>Curabitur ac sapien in mi auctor efficitur. In hac an habitasse platea dictumst.</TextWrapper>
+      
+      </View>
+
+      <View style={{ paddingHorizontal: 4 * vw }}>
+        <TextWrapper style={styles.cat}>Manufacturer</TextWrapper>
+        <TextWrapper style={styles.des}>John Doe</TextWrapper>
       
       </View>
       <View style={{alignItems:'center',marginTop:vh}}>

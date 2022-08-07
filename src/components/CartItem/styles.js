@@ -8,14 +8,22 @@ export default style = StyleSheet.create({
   title:{
     color:'#1E2022',
     fontFamily:Fonts.Poppins_Medium,
-    width:30*vw,
-    fontSize:2*vh
+    width:35*vw,
+    fontSize:2.3*vh
   },
   price:{
     color:theme.primary,
-    fontFamily:Fonts.Poppins_Medium,
+    fontFamily:Fonts.Poppins_SB,
     width:30*vw,
-    fontSize:2*vh
+    fontSize:2.5*vh
+  },
+  deleIcon:{
+    width:5*vw,
+    height:5*vw,
+    position:'absolute',
+    right:2*vw,
+    top:2*vh,
+    resizeMode:'contain'
   },
   box: {
     width: 90 * vw,

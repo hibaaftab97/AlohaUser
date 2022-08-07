@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
   submitButtonStyle: {
     width: 80 * vw,
     marginTop: 3 * vh,
-
   },
   inactiveDotStylePagination: {
     width: 4 * vw,
@@ -18,7 +17,11 @@ const styles = StyleSheet.create({
     // marginHorizontal: 2 * vw,
     borderColor: 'transparent',
   },
-
+  circle:{
+    width: 6 * vw,
+    height: 6 * vw,
+    borderRadius: 3 * vw,
+  },
   containerStylePagination: {
     bottom: 1 * vh,
     

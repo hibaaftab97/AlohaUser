@@ -12,6 +12,7 @@ import { vh, vw } from '../../units';
 import ServicesStack from '../ServicesStack';
 import ShopStack from '../ShopStack';
 import HelpStack from '../HelpStack';
+import orderStack from '../orderStack';
 
 
 const Drawer = createDrawerNavigator();
@@ -47,6 +48,8 @@ const DrawerNavigator = props => {
 
       <Drawer.Screen name="AppointmentStack" component={AppointmentStack} />
       <Drawer.Screen name="PaymentStack" component={PaymentStack} />
+      <Drawer.Screen name="orderStack" component={orderStack} />
+
       <Drawer.Screen name="ProfileStack" component={ProfileStack} />
       <Drawer.Screen name="HelpStack" component={HelpStack} />
 

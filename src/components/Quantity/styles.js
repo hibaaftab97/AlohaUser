@@ -35,6 +35,7 @@ export default style = StyleSheet.create({
   quantitytext:{
     color:theme.primary,
     fontFamily:Fonts.Poppins_Medium,
+    marginHorizontal:2*vw,
     fontSize:2.3*vh
   },
   img:{

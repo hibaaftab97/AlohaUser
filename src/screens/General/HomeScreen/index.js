@@ -56,20 +56,31 @@ const HomeScreen = props => {
   const [activeIndex, setActive] = useState(-1)
   const renderItem = ({ item, index }) => {
     return (
-      <ShopCard item={item} />
+      <ShopCard item={item} 
+      onPress={()=> props?.navigation.navigate('ShopStack',{
+        screen:"ProductDetailScreen"
+      })}/>
     )
   }
 
   const renderServiceItem = ({ item, index }) => {
     return (
-      <ServiceCard item={item} />
+      <ServiceCard item={item} 
+      onPress={()=> props?.navigation.navigate('ServicesStack',{
+        screen:"ServiceDetailScreen"
+      })}/>
     )
   }
   return (
-    <View style={styles.scroll}>
-      <ScrollView>
+    <ImageBackground style={styles.scroll}
+    imageStyle={{}}
+    source={Icons.homeBg}>
+      <ScrollView 
+          showsVerticalScrollIndicator={false}
+          >
         <CommonHeader type='drawer'
           title="Home"
+          style={{color:theme.primary}}
           cart />
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
           <TextWrapper style={styles.bannertitle}>We Provide Fast &  Reliable Medical Testing  Services</TextWrapper>
@@ -85,7 +96,10 @@ const HomeScreen = props => {
 
           </View>
           <TextWrapper style={styles.header}>Shops</TextWrapper>
+          <TouchableOpacity onPress={()=> props?.navigation.navigate('ShopStack')}>
           <TextWrapper style={styles.view}>View All</TextWrapper>
+
+          </TouchableOpacity>
 
         </View>
         <FlatList
@@ -96,14 +110,17 @@ const HomeScreen = props => {
 
           // keyExtractor={item => item.id}
           style={{ width: 100 * vw, paddingBottom: 1 * vh }}
-          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
         />
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: 95 * vw, marginTop: 1 * vh }}>
           <View>
 
           </View>
           <TextWrapper style={styles.header}>Services</TextWrapper>
+          <TouchableOpacity onPress={()=> props?.navigation.navigate('ServicesStack')}>
           <TextWrapper style={styles.view}>View All</TextWrapper>
+
+          </TouchableOpacity>
 
         </View>
         <FlatList
@@ -119,7 +136,7 @@ const HomeScreen = props => {
 
       </ScrollView>
 
-    </View >
+    </ImageBackground >
   );
 };
 export default HomeScreen;

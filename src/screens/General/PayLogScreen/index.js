@@ -15,13 +15,15 @@ const HomeScreen = props => {
     date: "01 April, 2022",
     amount: '$238.92',
     time:"04 : 20 pm",
+    id:"001",
     service:"BP - Blood Pressure "
   },
   {
     date: "01 April, 2022",
     amount: '$238.92',
     time:"04 : 20 pm",
-    service:"BP - Blood Pressure "
+    service:"BP - Blood Pressure ",
+    id:"002",
 
 
   },
@@ -29,6 +31,7 @@ const HomeScreen = props => {
     date: "01 April, 2022",
     amount: '$238.92',
     service:"BP - Blood Pressure ",
+    id:"003",
 
     time:"04 : 20 pm"
 
@@ -37,6 +40,7 @@ const HomeScreen = props => {
     date: "01 April, 2022",
     amount: '$238.92',
     service:"BP - Blood Pressure ",
+    id:"004",
 
     time:"04 : 20 pm"
 
@@ -57,6 +61,11 @@ const HomeScreen = props => {
            <View>
            <TextWrapper style={[styles.title,{color:index==activeIndex? theme.whiteBackground:theme.primary}]}>Date</TextWrapper>
            <TextWrapper style={[styles.subtitle,{color:index==activeIndex? theme.whiteBackground:'#1d1f1f'}]}>{item.date}</TextWrapper>
+           
+           </View>
+           <View>
+           <TextWrapper style={[styles.title,{color:index==activeIndex? theme.whiteBackground:theme.primary}]}>PT-ID</TextWrapper>
+           <TextWrapper style={[styles.subtitle,{color:index==activeIndex? theme.whiteBackground:'#1d1f1f'}]}>PT-{item.id}</TextWrapper>
            
            </View>
            <View>
@@ -85,7 +94,7 @@ const HomeScreen = props => {
     <View style={styles.scroll}>
       <CommonHeader type='drawer'
         title="Payment"
-        profile />
+         />
       <FlatList
         data={list}
         renderItem={renderItem}

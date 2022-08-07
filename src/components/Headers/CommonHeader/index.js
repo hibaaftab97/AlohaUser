@@ -15,7 +15,7 @@ const CommonHeader = props => {
         <TouchableOpacity
           onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
           style={styles.drawerButtonView}>
-          <Image source={Icons.menu} style={styles.drawerIconStyle} />
+          <Image source={Icons.menu} style={[styles.drawerIconStyle,{tintColor:props?.title=='Home'?theme.primary:theme.whiteBackground}]} />
         </TouchableOpacity>
       );
     } else {
@@ -27,7 +27,7 @@ const CommonHeader = props => {
             source={Icons.leftArrow}
             style={[
               styles.drawerIconStyle,
-            
+
             ]}
           />
         </TouchableOpacity>
@@ -35,7 +35,7 @@ const CommonHeader = props => {
     }
   };
   return (
-    <View style={styles.header}>
+    <View style={[styles.header,{backgroundColor:props?.title=='Home'? 'transparent':theme.primary}]}>
       <View style={styles.searchView}>
         {renderHeaderButton()}
         <TextWrapper
@@ -45,32 +45,30 @@ const CommonHeader = props => {
         </TextWrapper>
 
         <View style={styles.searchIconsView}>
-         
-            {props.profile ? (
 
-              <TouchableOpacity onPress={()=>{
-                if(props.edit){
-                  navigation.navigate('ProfileStack')
-                }
-               
-                }}>
-                <Image style={styles.searchIconStyle} source={Icons.profile} />
+          {props.profile ? (
 
-              </TouchableOpacity>
-            ) : props.edit ? (
-              <Image style={styles.searchIconStyle} source={Icons.edit} />
-            ) : props.cart?(
-              <TouchableOpacity onPress={()=>{
-                if(props.cart){
-                  navigation.navigate('CartScreen')
-                }
-               
-                }}>
-              <Image style={styles.searchIconStyle} source={Icons.cart} />
-              </TouchableOpacity>
+            <TouchableOpacity onPress={() => {
+              navigation.navigate('EditProfileScreen')
 
-            ):null}
-            {/* <Image style={styles.searchIconStyle} source={icons.search} /> */}
+
+            }}>
+              <TextWrapper  style={styles.edit}>Edit</TextWrapper>
+            </TouchableOpacity>
+          ) : props.edit ? (
+            <Image style={styles.searchIconStyle} source={Icons.edit} />
+          ) : props.cart ? (
+            <TouchableOpacity onPress={() => {
+             
+              navigation.navigate('CartScreen')
+
+
+            }}>
+              <Image style={[styles.searchIconStyle]} source={props?.title=='Home'?Icons.homecart:Icons.cart} />
+            </TouchableOpacity>
+
+          ) : null}
+          {/* <Image style={styles.searchIconStyle} source={icons.search} /> */}
         </View>
       </View>
     </View>

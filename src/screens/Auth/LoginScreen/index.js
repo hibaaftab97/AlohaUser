@@ -24,8 +24,8 @@ const LoginScreen = props => {
 
         <View style={styles.miniContainer}>
 
-          <TextWrapper style={styles.shortdes}>LogIn</TextWrapper>
-          <TextWrapper style={styles.des}>Please login to continue</TextWrapper>
+          <TextWrapper style={styles.shortdes}>Log In</TextWrapper>
+          <TextWrapper style={styles.des}>Please log in to continue</TextWrapper>
 
           <View style={styles.fieldsView}>
             <AuthTextInput
@@ -53,7 +53,7 @@ const LoginScreen = props => {
           />
           <View style={{flexDirection:'row',alignItems:'center'}}>
           <TextWrapper style={styles.account}>Don’t have an account?</TextWrapper>
-          <TouchableOpacity onPress={() => props.navigation.navigate('ForgotPasswordScreen')}>
+          <TouchableOpacity onPress={() => props.navigation.navigate('SignupScreen')}>
             <TextWrapper style={styles.signup}>Sign Up</TextWrapper>
 
           </TouchableOpacity>

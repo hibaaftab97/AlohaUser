@@ -25,6 +25,8 @@ const GetStartedScreen = props => {
         <View style={styles.miniContainer}>
 
 
+        <TextWrapper style={styles.des}>Please log in or sign up
+for an account to continue</TextWrapper>
 
 
 

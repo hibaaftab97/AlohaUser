@@ -26,6 +26,11 @@ const styles = StyleSheet.create({
     // position:'absolute',
     bottom:0,
   },
+  acceptButton: {
+    width: 40 * vw,
+    marginTop: 3 * vh,
+    marginBottom:1*vh
+  },
   container: {
     // flexDirection: 'row',
     // alignItems: 'center',

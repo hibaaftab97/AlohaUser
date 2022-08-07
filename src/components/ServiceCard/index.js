@@ -6,6 +6,7 @@ import styles from './styles';
 const ServiceCard = props => {
     return (
         <TouchableOpacity style={[styles.box]}
+        onPress={props?.onPress}
         >
           <Image source={props?.item?.image}
           style={styles.img}/>

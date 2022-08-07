@@ -127,7 +127,7 @@ const PaymentDetailScreen = props => {
     <View style={styles.scroll}>
       <CommonHeader
         title={props.route?.params?.service}
-        profile />
+         />
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={{ flex: 1, width: 100 * vw }}

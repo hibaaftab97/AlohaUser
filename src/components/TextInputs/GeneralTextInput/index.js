@@ -22,6 +22,7 @@ const GeneralTextInput = props => {
       <TextInput
         value={props.value}
         maxLength={props?.maxLength}
+        
         onChangeText={props.onChangeText}
         style={[styles.textInputStyle,props.inputViewStyle]}
         placeholder={props.placeHolder}

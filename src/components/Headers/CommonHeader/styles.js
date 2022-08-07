@@ -17,7 +17,12 @@ export default style = StyleSheet.create({
     fontFamily: Fonts.Poppins_Bold,
     fontSize: 2.5 * vh,
   },
-
+  edit:{
+    color:theme.whiteBackground,
+    fontFamily: Fonts.Inter_SB,
+    width:20*vw,
+    fontSize: 2.5 * vh,
+  },
   searchIconsView: {
     flexDirection: 'row',
     justifyContent: 'center',

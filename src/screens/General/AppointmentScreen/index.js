@@ -9,6 +9,7 @@ import TextWrapper from '../../../components/TextWrapper';
 import { Icons } from '../../../assets/images';
 import SubmitButton from '../../../components/Buttons/SubmitButton';
 import { Fonts } from '../../../assets/fonts';
+import Reschedule from '../../../components/Modal/Reschedule';
 
 const AppointmentScreen = props => {
 
@@ -72,6 +73,8 @@ const AppointmentScreen = props => {
   ]
 
   const [schedule,showSchedule]=useState(true)
+  const [visible, setVisible] = useState(false);
+
 
   const empty=()=>{
     return(
@@ -132,9 +135,10 @@ const AppointmentScreen = props => {
 
           <View>
             <SubmitButton
+            onPress={()=> setVisible(true)}
               style={styles.submitButtonStyle}
               textStyle={{ fontFamily: Fonts.Poppins_Medium, fontSize: 1.5 * vh }}
-              title="View Results"
+              title="Reschedule"
             />
           </View>
 
@@ -143,24 +147,33 @@ const AppointmentScreen = props => {
       </TouchableOpacity>
     )
   }
+
+  const handleModalVisibility = () => {
+    setVisible(false);
+  };
   return (
     <View style={styles.scroll}>
       <CommonHeader type='drawer'
-        title="Appointments"
-        profile />
+        title="All Appointments"
+         />
+           <Reschedule
+          onPress={handleModalVisibility}
+          onHide={handleModalVisibility}
+          visibility={visible}
+        />
         <View style={styles.smallheader}>
       <View style={styles.headerbox}>
         <View style={{flexDirection:'row',}}>
         <TouchableOpacity 
         onPress={()=>showSchedule(!schedule)}
         style={[styles.smallbox,{backgroundColor:schedule? theme.primary:'transparent'}]}>
-          <TextWrapper style={[styles.headertitle,{color:schedule? theme.whiteBackground:'#767676'}]}>Schedules</TextWrapper>
+          <TextWrapper style={[styles.headertitle,{color:schedule? theme.whiteBackground:theme.primary}]}>Scheduled</TextWrapper>
 
         </TouchableOpacity>
         <TouchableOpacity 
         onPress={()=>showSchedule(!schedule)}
         style={[styles.smallbox,{backgroundColor:!schedule? theme.primary:'transparent'}]}>
-          <TextWrapper style={[styles.headertitle,{color:!schedule? theme.whiteBackground:'#767676'}]}>History</TextWrapper>
+          <TextWrapper style={[styles.headertitle,{color:!schedule? theme.whiteBackground:theme.primary}]}>History</TextWrapper>
 
         </TouchableOpacity>
         </View>

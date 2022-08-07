@@ -33,9 +33,8 @@ const styles = StyleSheet.create({
     fontSize:2*vh
   },
   img:{
-    width:6*vw,
-    height:6*vw,
-    tintColor:theme.whiteBackground,
+    width:90*vw,
+    height:50*vw,
     resizeMode:'contain'
   },
   leftimg:{
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
     borderColor:theme.primary,
     borderWidth:0.3*vh,
     paddingHorizontal: 4 * vw,
-    marginTop:10*vh,
+    marginTop:2*vh,
     paddingVertical: 2 * vh,
     shadowOffset: {
       width: 3,
@@ -63,8 +62,8 @@ const styles = StyleSheet.create({
   },
   text:{
     color:theme.primary,
-    marginTop:5*vh,
-
+    marginTop:2*vh,
+lineHeight:3*vh,
     fontFamily:Fonts.Poppins_Regular,
     width:90*vw,
 textAlign:'center',

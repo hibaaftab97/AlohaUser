@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './styles';
-import { Image, ImageBackground, TouchableOpacity, View } from 'react-native';
+import { Image, ImageBackground, ScrollView, TouchableOpacity, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { useDrawerProgress, DrawerContentScrollView, } from '@react-navigation/drawer';
 import TextWrapper from '../../TextWrapper';
@@ -18,6 +18,7 @@ const routeOrders = [
   'ShopStack',
   'AppointmentStack',
   'PaymentStack',
+  'orderStack',
   'ProfileStack',
   'HelpStack',
 ];
@@ -41,6 +42,10 @@ const drawerRoutes = {
 
   PaymentStack: {
     label: 'Payments',
+    icon: Icons.drawer8,
+  },
+  orderStack: {
+    label: 'Order Summary',
     icon: Icons.drawer5,
   },
   ProfileStack: {
@@ -73,7 +78,7 @@ const DrawerContent = props => {
   return (
     <DrawerContentScrollView
       {...props}
-      contentContainerStyle={{ backgroundColor: theme.primary, flex: 1 }}>
+      contentContainerStyle={{ backgroundColor: theme.primary,flex:1}}>
       {/* <ImageBackground source={Icons.drawerbg}
         imageStyle={{ width: 80 * vw, height: 50 * vh }}
         resizeMode='cover'
@@ -93,6 +98,7 @@ const DrawerContent = props => {
       </View>
 
       <View style={styles.routeContainer}>
+        <ScrollView showsVerticalScrollIndicator={false}>
         {routeOrders.map((item, index) => {
           return (
             <DrawerButton
@@ -102,6 +108,7 @@ const DrawerContent = props => {
             />
           );
         })}
+        </ScrollView>
       </View>
 
 

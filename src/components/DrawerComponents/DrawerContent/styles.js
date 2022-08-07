@@ -24,11 +24,11 @@ const styles = StyleSheet.create({
 
   },
   routeContainer: {
-    marginTop: 3 * vh,
+    // marginTop: 3 * vh,
     backgroundColor: theme.whiteBackground,
     borderTopStartRadius: 5 * vw,
     borderTopEndRadius: 5 * vw,
-
+height:70*vh,
     width: 100 * vw,
     position:'absolute',
     bottom:0,
