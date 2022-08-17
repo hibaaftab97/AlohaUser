@@ -27,9 +27,9 @@ const styles = StyleSheet.create({
 
   fieldContainer: {
     backgroundColor: theme.primary,
-    paddingVertical: 3 * vh,
+    paddingVertical: 4 * vh,
     width: 100 * vw,
-    borderTopRightRadius: 15 * vw,
+    borderTopRightRadius: 10 * vw,
   },
   shortdes: {
     color: theme.whiteBackground,

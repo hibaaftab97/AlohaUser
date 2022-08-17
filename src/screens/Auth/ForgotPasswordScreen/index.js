@@ -273,7 +273,7 @@ const ForgotPasswordScreen = props => {
                 textStyle={styles.titleTextStyle}
                 title="Submit"
               />
-              {step==1?<View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              {step==1?<View style={{ flexDirection: 'row', alignItems: 'center',marginTop:vh }}>
                 <TextWrapper style={styles.account}>Don’t have an account?</TextWrapper>
                 <TouchableOpacity onPress={() => props.navigation.navigate('ForgotPasswordScreen')}>
                   <TextWrapper style={styles.signup}>Sign Up</TextWrapper>
@@ -281,7 +281,7 @@ const ForgotPasswordScreen = props => {
                 </TouchableOpacity>
               </View>
               :step==2?<View  style={{alignItems:'center'}}>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center',marginTop:vh }}>
               <TextWrapper style={styles.account}>Already have an account?</TextWrapper>
               <TouchableOpacity onPress={() => props.navigation.navigate('LoginScreen')}>
                 <TextWrapper style={styles.signup}>Log In</TextWrapper>

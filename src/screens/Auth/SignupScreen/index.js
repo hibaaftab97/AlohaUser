@@ -50,7 +50,7 @@ const LoginScreen = props => {
             <AuthTextInput
               value={email}
               onChangeText={text => setEmail(text)}
-              placeHolder="Enter Your Mail"
+              placeHolder="Enter Email"
               keyboardType="email-address"
             />
             <AuthTextInput

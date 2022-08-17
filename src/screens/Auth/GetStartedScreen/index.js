@@ -53,7 +53,7 @@ for an account to continue</TextWrapper>
 
         </View>
 
-      </View>
+       </View>
     );
   };
   return (

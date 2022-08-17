@@ -15,7 +15,7 @@ const WelcomeScreen = props => {
         <View style={styles.miniContainer}>
 
           <TextWrapper style={styles.shortdes}>We provide Fast & reliable Medical testing services</TextWrapper>
-          <TextWrapper style={styles.des}>Not sure which test is right for you? While all of our diagnost</TextWrapper>
+          <TextWrapper style={styles.des}>Not sure which test is right for you? While all of our diagnostic tests utilize a nasal swab and will tell you if you are currently infected.</TextWrapper>
           
           
           <SubmitButton

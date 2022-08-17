@@ -31,7 +31,7 @@ const LoginScreen = props => {
             <AuthTextInput
               value={email}
               onChangeText={text => setEmail(text)}
-              placeHolder="Enter Your Mail"
+              placeHolder="Enter Email"
               keyboardType="email-address"
             />
             <AuthTextInput
@@ -51,7 +51,7 @@ const LoginScreen = props => {
             style={styles.submitButtonStyle}
             title="LogIn"
           />
-          <View style={{flexDirection:'row',alignItems:'center'}}>
+          <View style={{flexDirection:'row',alignItems:'center',marginTop:vh}}>
           <TextWrapper style={styles.account}>Don’t have an account?</TextWrapper>
           <TouchableOpacity onPress={() => props.navigation.navigate('SignupScreen')}>
             <TextWrapper style={styles.signup}>Sign Up</TextWrapper>

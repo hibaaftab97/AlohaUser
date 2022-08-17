@@ -8,11 +8,13 @@ const styles = StyleSheet.create({
   submitButtonStyle: {
     width: 40 * vw,
     marginTop: 3 * vh,
+    marginBottom: 3 * vh,
+
   },
 
   fieldContainer: {
     backgroundColor: theme.whiteBackground,
- paddingVertical:6*vh,
+ paddingVertical:4*vh,
     width: 100 * vw,
     borderTopRightRadius: 10 * vw,
     borderTopLeftRadius: 10 * vw,
@@ -20,7 +22,7 @@ const styles = StyleSheet.create({
   },
   scroll: {
     flex: 1,
-   
+    width:100*vw
   },
   content: {
     // alignItems: 'flex-end',
@@ -43,6 +45,7 @@ fontFamily:Fonts.Poppins_Regular
   },
   miniContainer: {
     justifyContent: 'center',
+    
     alignItems: 'center',
     width: 80 * vw,
     alignSelf: 'center',
