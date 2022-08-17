@@ -7,41 +7,44 @@ import ConactUsScreen from '../screens/General/ContactUsScreen';
 import CartScreen from '../screens/General/CartScreen';
 import DeliveryScreen from '../screens/General/DeliveryScreen';
 import PaymentScreen from '../screens/General/PaymentScreen';
+import { useSelector } from 'react-redux';
 
 
 function MainNavigator() {
 
   const Stack = createStackNavigator();
+  const loggedIn = useSelector(state => state.authReducer.loggedin);
+
 
   return (
     <Stack.Navigator>
-             
-     <Stack.Screen
-          options={{ headerShown: false }}
-          name="AuthStack"
-          component={AuthStack}
-        />  
-      <Stack.Screen
+
+      {!loggedIn ? <Stack.Screen
         options={{ headerShown: false }}
-        name="DrawerNavigator"
-        component={DrawerNavigator}
+        name="AuthStack"
+        component={AuthStack}
       />
+        : <Stack.Screen
+          options={{ headerShown: false }}
+          name="DrawerNavigator"
+          component={DrawerNavigator}
+        />}
       <Stack.Screen
         options={{ headerShown: false }}
         name="CartScreen"
         component={CartScreen}
       />
-        <Stack.Screen
+      <Stack.Screen
         options={{ headerShown: false }}
         name="DeliveryScreen"
         component={DeliveryScreen}
       />
-        <Stack.Screen
+      <Stack.Screen
         options={{ headerShown: false }}
         name="PaymentScreen"
         component={PaymentScreen}
       />
-     
+
 
     </Stack.Navigator>
   );

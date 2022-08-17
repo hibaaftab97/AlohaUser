@@ -9,14 +9,48 @@ import TextWrapper from '../../../components/TextWrapper';
 import AuthTextInput from '../../../components/TextInputs/AuthTextInput';
 import { validateEmail } from '../../../utils';
 import theme from '../../../utils/theme';
-
+import { userLogin } from '../../../redux/actions/authActions';
+import { useDispatch } from 'react-redux';
+import { showToast } from '../../../redux/Api/HelperFunction';
 
 const LoginScreen = props => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+  const handleLogin = () => {
+    const data = {
+      email: email,
+      password: password,
+    };
+
+
+    if (email == '') {
+      showToast('Enter email');
+
+    }
+    else if (password == '') {
+      showToast('Enter password');
+
+    }
+    else if (!validateEmail(email)) {
+      showToast('Please Enter a Valid Email');
+    }
+    else {
+      dispatch(userLogin(data)).then(response => {
+
+        console.log('response?.status', response);
+        if (response?.status) {
+          // setVisible(!visible);
+          // props.navigation.navigate('DrawerNavigator')
+
+
+        }
+      });
+    }
+
+
+  };
   const renderFields = () => {
     return (
 
@@ -43,22 +77,24 @@ const LoginScreen = props => {
             />
 
           </View>
-         
+
 
           <SubmitButton
-          textStyle={{color:theme.primary}}
-            onPress={()=>props.navigation.navigate('DrawerNavigator')}
+            textStyle={{ color: theme.primary }}
+            onPress={() => 
+              handleLogin()
+              }
             style={styles.submitButtonStyle}
             title="LogIn"
           />
-          <View style={{flexDirection:'row',alignItems:'center',marginTop:vh}}>
-          <TextWrapper style={styles.account}>Don’t have an account?</TextWrapper>
-          <TouchableOpacity onPress={() => props.navigation.navigate('SignupScreen')}>
-            <TextWrapper style={styles.signup}>Sign Up</TextWrapper>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: vh }}>
+            <TextWrapper style={styles.account}>Don’t have an account?</TextWrapper>
+            <TouchableOpacity onPress={() => props.navigation.navigate('SignupScreen')}>
+              <TextWrapper style={styles.signup}>Sign Up</TextWrapper>
 
-          </TouchableOpacity>
+            </TouchableOpacity>
           </View>
-           <TouchableOpacity onPress={() => props.navigation.navigate('ForgotPasswordScreen')}>
+          <TouchableOpacity onPress={() => props.navigation.navigate('ForgotPasswordScreen')}>
             <TextWrapper style={styles.fpw}>Forgot Password</TextWrapper>
 
           </TouchableOpacity>

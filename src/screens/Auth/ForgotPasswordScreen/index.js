@@ -4,26 +4,35 @@ import ScrollWrapper from '../../../components/ScrollWrapper';
 import TextWrapper from '../../../components/TextWrapper';
 import AuthTextInput from '../../../components/TextInputs/AuthTextInput';
 import CodeInput from '../../../components/TextInputs/CodeInput';
-
+import { forgotpassword, verifyCode, resetpassword } from '../../../redux/actions/authActions';
+import { useDispatch } from 'react-redux';
 import SubmitButton from '../../../components/Buttons/SubmitButton';
 import styles from './styles';
 import { vh, vw } from '../../../units';
+import { showToast } from '../../../redux/Api/HelperFunction';
+import { validateEmail } from '../../../utils';
+
 
 const ForgotPasswordScreen = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [verificationCode, setVerificationCode] = useState();
+  const dispatch = useDispatch();
 
   const code1Ref = useRef();
   const code2Ref = useRef();
   const code3Ref = useRef();
   const code4Ref = useRef();
+  const code5Ref = useRef();
+
 
   const [code1, setCode1] = useState("");
   const [code2, setCode2] = useState("");
   const [code3, setCode3] = useState("");
   const [code4, setCode4] = useState("");
+  const [code5, setCode5] = useState("");
+
 
   const [step, setStep] = useState(1);
   const [animation, setAnimation] = useState(new Animated.Value(20));
@@ -36,33 +45,82 @@ const ForgotPasswordScreen = props => {
       email: email,
     };
 
+    if (email == '') {
+      showToast('Enter email');
 
+    }
+
+    else if (!validateEmail(email)) {
+      showToast('Please Enter a Valid Email');
+    }
+    else {
+      dispatch(forgotpassword(data)).then(response => {
+        console.log('response?.status', response);
+        if (response.status) {
+          showToast(response.message)
+          // setVisible(!visible);\
+          setStep(step + 1);
+        }
+      });
+    }
 
 
   };
-
-  const _verifyCode = () => {
-    const data = {
-      code: code1 + code2 + code3 + code4,
-    };
-
-
-
-
-
-  };
-
   const _resetPassword = () => {
     const data = {
       password: password,
-      code: code1 + code2 + code3 + code4,
+      code: code1 + code2 + code3 + code4 + code5,
     };
 
 
-    props.navigation.navigate('LoginScreen')
+    if (password == '') {
+      showToast('Enter password');
+
+    }
+
+
+    else {
+      dispatch(resetpassword(data)).then(response => {
+        console.log('response?.status', response);
+        if (response.status) {
+          showToast(response.message)
+          // setVisible(!visible);\
+
+          props.navigation.navigate('LoginScreen')
+        }
+      });
+    }
 
 
   };
+  const _verifyCode = () => {
+    const data = {
+      code: code1 + code2 + code3 + code4 + code5,
+    };
+
+    if (code1 == '' || code2 == '' || code3 == '' || code4 == '' || code5 == '') {
+      showToast('Enter code');
+
+    }
+
+
+    else {
+      dispatch(verifyCode(data)).then(response => {
+        console.log('response?.status', response);
+        if (response.status) {
+          // setVisible(!visible);\
+          showToast(response.message)
+
+          setStep(step + 1);
+        }
+      });
+    }
+
+
+
+  };
+
+
 
   const onChange = (field_no, e) => {
     console.log("onChange==>", code2Ref)
@@ -88,6 +146,10 @@ const ForgotPasswordScreen = props => {
             setCode4(e.nativeEvent.text);
             return;
           }
+          case 4: {
+            setCode5(e.nativeEvent.text);
+            return;
+          }
         }
       } else {
         switch (field_no) {
@@ -105,6 +167,10 @@ const ForgotPasswordScreen = props => {
           }
           case 3: {
             setCode4(e.nativeEvent.text);
+            return;
+          }
+          case 4: {
+            setCode5(e.nativeEvent.text);
             return;
           }
         }
@@ -137,6 +203,11 @@ const ForgotPasswordScreen = props => {
 
           return;
         }
+        case 4: {
+          code4Ref.current.focus();
+
+          return;
+        }
       }
     }
   };
@@ -164,7 +235,7 @@ const ForgotPasswordScreen = props => {
           <TextWrapper style={styles.shortdes}>Enter OTP</TextWrapper>
 
           <TextWrapper style={styles.des}>A 4 digit number has been sent to your email</TextWrapper>
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly'}}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly' }}>
             <CodeInput
               value={code1}
               onSubmitEditing={() => code2Ref.focus()}
@@ -204,6 +275,15 @@ const ForgotPasswordScreen = props => {
               maxLength={1}
               keyboardType='number-pad'
             />
+            <CodeInput
+              value={code5}
+              onKeyPress={(e) => onKeyPress(4, e)}
+              onChange={(e) => onChange(4, e)}
+              selectTextOnFocus={true}
+              ref={code5Ref}
+              maxLength={1}
+              keyboardType='number-pad'
+            />
           </View>
 
         </View>
@@ -233,8 +313,8 @@ const ForgotPasswordScreen = props => {
 
   const handleOnPress = () => {
     if (step == 1) {
-      // sendCode()
-      setStep(step+1)
+      sendCode()
+      // setStep(step+1)
       // Animated.timing(animation, {
       //   toValue: 40,
       // }).start();
@@ -243,8 +323,8 @@ const ForgotPasswordScreen = props => {
       // Animated.timing(animation, {
       //   toValue: 60,
       // }).start();
-      setStep(step+1)
-      // _verifyCode()
+      // setStep(step+1)
+      _verifyCode()
 
     }
   }
@@ -266,37 +346,37 @@ const ForgotPasswordScreen = props => {
               title="Save"
             />
           ) : (
-            <View style={{alignItems:'center'}}>
+            <View style={{ alignItems: 'center' }}>
               <SubmitButton
                 onPress={handleOnPress}
                 style={styles.submitButtonStyle}
                 textStyle={styles.titleTextStyle}
                 title="Submit"
               />
-              {step==1?<View style={{ flexDirection: 'row', alignItems: 'center',marginTop:vh }}>
+              {step == 1 ? <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: vh }}>
                 <TextWrapper style={styles.account}>Don’t have an account?</TextWrapper>
                 <TouchableOpacity onPress={() => props.navigation.navigate('ForgotPasswordScreen')}>
                   <TextWrapper style={styles.signup}>Sign Up</TextWrapper>
 
                 </TouchableOpacity>
               </View>
-              :step==2?<View  style={{alignItems:'center'}}>
-              <View style={{ flexDirection: 'row', alignItems: 'center',marginTop:vh }}>
-              <TextWrapper style={styles.account}>Already have an account?</TextWrapper>
-              <TouchableOpacity onPress={() => props.navigation.navigate('LoginScreen')}>
-                <TextWrapper style={styles.signup}>Log In</TextWrapper>
+                : step == 2 ? <View style={{ alignItems: 'center' }}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: vh }}>
+                    <TextWrapper style={styles.account}>Already have an account?</TextWrapper>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('LoginScreen')}>
+                      <TextWrapper style={styles.signup}>Log In</TextWrapper>
 
-              </TouchableOpacity>
-            </View>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <TextWrapper style={styles.account}>Didn’t receive an OTP code?</TextWrapper>
-              <TouchableOpacity>
-                <TextWrapper style={styles.signup}>Resend OTP</TextWrapper>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <TextWrapper style={styles.account}>Didn’t receive an OTP code?</TextWrapper>
+                    <TouchableOpacity>
+                      <TextWrapper style={styles.signup}>Resend OTP</TextWrapper>
 
-              </TouchableOpacity>
-            </View>
-            </View>
-            :null}
+                    </TouchableOpacity>
+                  </View>
+                </View>
+                  : null}
             </View>
 
           )}
@@ -306,18 +386,18 @@ const ForgotPasswordScreen = props => {
     );
   };
 
-const getImage=()=>{
-  if(step==1){
-    return require('../../../assets/images/forgotBg.png')
-  }
-  else if(step==2){
-    return require('../../../assets/images/optpBg.png')
+  const getImage = () => {
+    if (step == 1) {
+      return require('../../../assets/images/forgotBg.png')
+    }
+    else if (step == 2) {
+      return require('../../../assets/images/optpBg.png')
 
+    }
+    else {
+      return require('../../../assets/images/loginBG.png')
+    }
   }
-  else{
-    return require('../../../assets/images/loginBG.png')
-  }
-}
 
   return (
     <ScrollWrapper avoidKeyboard={true}
@@ -330,7 +410,7 @@ const getImage=()=>{
         resizeMode='cover'
         imageStyle={styles.scroll}
         source={
-          
+
           getImage()}>
 
         {renderFields()}

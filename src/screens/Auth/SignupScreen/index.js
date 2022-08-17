@@ -10,10 +10,13 @@ import AuthTextInput from '../../../components/TextInputs/AuthTextInput';
 import { validateEmail } from '../../../utils';
 import theme from '../../../utils/theme';
 import { authIcons, Icons } from '../../../assets/images';
-
+import { userSignup } from '../../../redux/actions/authActions';
+import { useDispatch } from 'react-redux';
+import { showToast } from '../../../redux/Api/HelperFunction';
+// import { validateEmail } from '../../../utils';
 
 const LoginScreen = props => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
   const [fname, setfname] = useState('');
@@ -21,6 +24,50 @@ const LoginScreen = props => {
 
 
   const [password, setPassword] = useState('');
+
+  const handleSignup = () => {
+    const data = {
+      first_name:fname,
+      last_name:lname,
+      email: email,
+      password: password,
+      account_type:'user'
+    };
+    if (fname == '') {
+      showToast('Enter first name');
+
+    }
+    else if (lname == '') {
+      showToast('Enter last name');
+
+    }
+    
+    else if (email == '') {
+      showToast('Enter email');
+
+    }
+    else if (password == '') {
+      showToast('Enter password');
+
+    }
+    else if (!validateEmail(email)) {
+      showToast('Please Enter a Valid Email');
+    }
+    else {
+      dispatch(userSignup(data)).then(response => {
+        
+        console.log('response?.status', response);
+        if (response?.status) {
+          // setVisible(!visible);
+          // props.navigation.navigate('DrawerNavigator')
+
+
+        }
+      });
+    }
+
+
+  };
   
   const renderFields = () => {
     return (
@@ -66,7 +113,7 @@ const LoginScreen = props => {
 
           <SubmitButton
           textStyle={{color:theme.primary}}
-            // onPress={handleLogin}
+            onPress={handleSignup}
             style={styles.submitButtonStyle}
             title="Submit"
           />
