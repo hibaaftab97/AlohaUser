@@ -1,11 +1,10 @@
 import * as types from '../types';
 import { endpoints } from '../config';
-import { post, put,  } from '../Api/index';
+import { get, post, put,  } from '../Api/index';
 import { showToast } from '../Api/HelperFunction';
 
 
 export const userLogin = data => {
-  console.log(data, 'loginData');
   return async dispatch => {
     return new Promise(async (resolve, reject) => {
       try {
@@ -121,6 +120,52 @@ export const forgotpassword = data => {
           type: types.LOADING_START,
         });
         const res = await post(endpoints.auth.forgotpassword, data, true);
+        dispatch({
+          type: types.LOADING_END,
+        });
+        resolve(res);
+      } catch (e) {
+        dispatch({
+          type: types.LOADING_END,
+        });
+        reject(e);
+        showToast(e);
+      }
+    });
+  };
+};
+
+export const getOrders = () => {
+  return async dispatch => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        // dispatch({
+        //   type: types.LOADING_START,
+        // });
+        const res = await get(endpoints.users.getOrders,);
+        dispatch({
+          type: types.LOADING_END,
+        });
+        resolve(res);
+      } catch (e) {
+        dispatch({
+          type: types.LOADING_END,
+        });
+        reject(e);
+        showToast(e);
+      }
+    });
+  };
+};
+
+export const getOrderDetails = (id) => {
+  return async dispatch => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        // dispatch({
+        //   type: types.LOADING_START,
+        // });
+        const res = await get(endpoints.users.getOrderDetail+`/${id}`);
         dispatch({
           type: types.LOADING_END,
         });

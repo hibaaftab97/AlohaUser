@@ -11,11 +11,16 @@ const commonReducer = {
   attendance:false
 };
 
-
+const productReducer = {
+ products:[],
+ services:[]
+};
 
 const initialStates = {
   authReducer: authReducer,
   commonReducer: commonReducer,
+  productReducer: productReducer,
+
 
 };
 export default initialStates;

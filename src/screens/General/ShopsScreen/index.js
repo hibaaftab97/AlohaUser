@@ -8,29 +8,12 @@ import ScrollWrapper from '../../../components/ScrollWrapper';
 import TextWrapper from '../../../components/TextWrapper';
 import { generalImages, Icons } from '../../../assets/images';
 import ShopCard from '../../../components/ShopCard';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const ShopsScreen = props => {
 
-  const list = [{
-    title: "All Appointments",
-    image: generalImages.shop1,
-    price: "$149"
-  },
-  {
-    title: "Latest Appointments",
-    image: generalImages.shop2,
-    price: "$149"
-
-  },
-  {
-    title: "Completed Appointments",
-    image: generalImages.shop3,
-    price: "$149"
-
-  },
-
-  ]
+ 
   const categories = [{
     title: "Gender Testing",
    
@@ -52,13 +35,16 @@ const ShopsScreen = props => {
   },
 
   ]
+  const products = useSelector(state => state.productReducer.products);
 
   const [activeIndex,setActive]=useState(-1)
   const renderItem = ({ item, index }) => {
     
     return (
       <ShopCard item={item} 
-      onPress={()=>props.navigation.navigate('ProductDetailScreen')}/>
+      onPress={()=>props.navigation.navigate('ProductDetailScreen',{
+        productId:item?.id
+      })}/>
     )
   }
   const renderCategoryItem = ({ item, index }) => {
@@ -84,7 +70,7 @@ const ShopsScreen = props => {
         showsVerticalScrollIndicator={false}
       />
       <FlatList
-        data={list}
+        data={products}
         renderItem={renderItem}
         contentContainerStyle={{ alignItems: 'center',paddingBottom: 10 * vh, }}
 numColumns={2}

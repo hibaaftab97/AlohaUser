@@ -7,6 +7,7 @@ import theme from '../../../utils/theme';
 import ScrollWrapper from '../../../components/ScrollWrapper';
 import TextWrapper from '../../../components/TextWrapper';
 import { generalImages, Icons } from '../../../assets/images';
+import { useDispatch, useSelector } from 'react-redux';
 
 import BookService from '../../../components/Modal/BookService';
 
@@ -30,6 +31,7 @@ const ServicesScreen = props => {
   },
   ]
   const [visible, setVisible] = useState(false);
+  const services = useSelector(state => state.productReducer.services);
 
 
   const [activeIndex, setActive] = useState(-1)
@@ -43,9 +45,9 @@ const ServicesScreen = props => {
         }
         }>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Image source={item.image}
-            style={[styles.leftimg, { tintColor: index == activeIndex ? theme.whiteBackground : theme.primary }]} />
-          <TextWrapper style={[styles.title, { color: index == activeIndex ? theme.whiteBackground : theme.primary }]}>{item.title}</TextWrapper>
+          <Image source={{uri:item.image_path}}
+            style={[styles.leftimg, ]} />
+          <TextWrapper style={[styles.title, { color: index == activeIndex ? theme.whiteBackground : theme.primary }]}>{item.service_name}</TextWrapper>
           <Image source={Icons.rightArrow}
             style={[styles.img, { tintColor: index == activeIndex ? theme.whiteBackground : theme.primary }]} />
         </View>
@@ -63,13 +65,15 @@ const ServicesScreen = props => {
       <BookService
         onPress={() => {
           setVisible(false)
-          props.navigation.navigate('ServiceDetailScreen')
+          props.navigation.navigate('ServiceDetailScreen',{
+            serviceid:services[activeIndex].id
+          })
         }}
         onHide={handleModalVisibility}
         visibility={visible}
       />
       <FlatList
-        data={list}
+        data={services}
         renderItem={renderItem}
         contentContainerStyle={{ alignItems: 'center', paddingBottom: 10 * vh, }}
 

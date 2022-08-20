@@ -8,9 +8,9 @@ const ServiceCard = props => {
         <TouchableOpacity style={[styles.box]}
         onPress={props?.onPress}
         >
-          <Image source={props?.item?.image}
+          <Image source={{uri:props?.item?.image_path}}
           style={styles.img}/>
-             <TextWrapper style={[styles.title]}>{props.item.title}</TextWrapper>
+             <TextWrapper style={[styles.title]}>{props.item.service_name}</TextWrapper>
    
          
         

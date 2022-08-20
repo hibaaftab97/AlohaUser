@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   leftimg:{
     width:10*vw,
     height:10*vw,
-    tintColor:theme.whiteBackground,
+    // tintColor:theme.whiteBackground,
     resizeMode:'contain'
   }
 

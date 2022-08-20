@@ -8,12 +8,12 @@ const OrderCard = props => {
         <TouchableOpacity style={[styles.box]}
         >
             <View   style={{flexDirection:'row',alignItems:'center'}}>
-            <Image source={props?.item?.image}
+            <Image source={{uri:props?.item?.product?.images[0]?.title}}
           style={styles.img}/>
           <View>
-          <TextWrapper style={[styles.title]}>{props.item.title}</TextWrapper>
-          <TextWrapper style={[styles.title]}>{props.item.price}</TextWrapper>
-          <TextWrapper style={[styles.title]}>Qty - 0{props.item.quantity}</TextWrapper>
+          <TextWrapper style={[styles.title]}>{props.item.product?.title}</TextWrapper>
+          <TextWrapper style={[styles.title]}>{props.item.item_price}</TextWrapper>
+          <TextWrapper style={[styles.title]}>Qty - {props.item.qty}</TextWrapper>
 
 
           </View>

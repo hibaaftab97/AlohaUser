@@ -7,21 +7,31 @@ export const endpoints = {
   auth: {
     login: 'login',
     logout: 'logout',
-register:'register',
-    forgotpassword:"forgot-password",
-    verifycode:"verify",
-    resetpassword:"reset-password"
+    register: 'register',
+    forgotpassword: "forgot-password",
+    verifycode: "verify",
+    resetpassword: "reset-password"
   },
-vendors:{
-  getallAppointments:"vendors/appointment",
-  getProfile:"vendors/profile",
-  updateProfile:"vendors/edit",
+  users: {
+    getallAppointments: "vendors/appointment",
+    getallProducts: "users/products",
+    getProductDetail: "users/products",
 
-  timeIn:"vendors/time-in",
-  timeOut:"vendors/time-out"
+    getallServices: "users/services",
+    getServiceByid: "users/services",
+    bookService: "users/booking/request",
+    getOrders: "users/orders",
+    getOrderDetail: "users/orders",
 
-}
- 
+
+    getProfile: "vendors/profile",
+    updateProfile: "vendors/edit",
+
+    timeIn: "vendors/time-in",
+    timeOut: "vendors/time-out"
+
+  }
+
 };
 
 const configs = {

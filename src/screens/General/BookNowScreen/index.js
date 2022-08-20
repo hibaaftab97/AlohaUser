@@ -9,13 +9,48 @@ import TextWrapper from '../../../components/TextWrapper';
 import { generalImages, Icons } from '../../../assets/images';
 import SubmitButton from '../../../components/Buttons/SubmitButton';
 import GeneralTextInput from '../../../components/TextInputs/GeneralTextInput';
-
+import { bookService } from '../../../redux/actions/productActions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const BookNowScreen = props => {
 
 
+  const dispatch = useDispatch();
 
-  const [activeIndex, setActive] = useState(-1)
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
+  const [city, setCity] = useState("")
+  const [address, setAddress] = useState("")
+  const [date, setDate] = useState("")
+  const [time, setTime] = useState("")
+
+  const book = () => {
+
+    let book = {
+      service: {
+        service_id: props.route.params.serviceDetail.id,
+        title: props.route.params.serviceDetail.service_name,
+        amount: props.route.params.serviceDetail.price
+
+
+      },
+      details: {
+        "name": name,
+        "email": email,
+        "phone": phone,
+        "city": city,
+        "address": address,
+        "time": time,
+        "date": date
+      }
+    }
+    dispatch(bookService(book)).then(response => {
+
+
+        console.log('response=>>',response);
+    });
+  }
 
   return (
     <View style={styles.scroll}>
@@ -26,53 +61,53 @@ const BookNowScreen = props => {
           title="COVID-19 (PCR/Antigen) Test"
         />
         <View style={{ alignItems: 'center' }}>
-        <View style={[styles.box]}>
-        <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-          <View>
-          <TextWrapper  style={[styles.price,{color:theme.primary}]}>Service Name</TextWrapper>
-          <TextWrapper  style={styles.price}>Covid 19 Test</TextWrapper>
+          <View style={[styles.box]}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              <View>
+                <TextWrapper style={[styles.price, { color: theme.primary }]}>Service Name</TextWrapper>
+                <TextWrapper style={styles.price}>{props.route.params.serviceDetail.service_name}</TextWrapper>
+
+              </View>
+              <View>
+                <TextWrapper style={[styles.price, { color: theme.primary }]}>Amount</TextWrapper>
+                <TextWrapper style={styles.price}>${props.route.params.serviceDetail.price}</TextWrapper>
+
+              </View>
+            </View>
+
 
           </View>
-          <View>
-          <TextWrapper  style={[styles.price,{color:theme.primary}]}>Amount</TextWrapper>
-          <TextWrapper  style={styles.price}>$119.50</TextWrapper>
-
-          </View>
-        </View>
-
-
-      </View>
           <GeneralTextInput
-            // value={password}
-            // onChangeText={text => setPassword(text)}
+            value={name}
+            onChangeText={text => setName(text)}
             placeHolder=""
 
             label="Name"
           />
           <GeneralTextInput
-            // value={password}
-            // onChangeText={text => setPassword(text)}
+            value={email}
+            onChangeText={text => setEmail(text)}
             placeHolder=""
 
             label="Email"
           />
           <GeneralTextInput
-            // value={password}
-            // onChangeText={text => setPassword(text)}
+            value={phone}
+            onChangeText={text => setPhone(text)}
             placeHolder=""
 
             label="Phone No"
           />
           <GeneralTextInput
-            // value={password}
-            // onChangeText={text => setPassword(text)}
+            value={city}
+            onChangeText={text => setCity(text)}
             placeHolder=""
 
             label="City"
           />
           <GeneralTextInput
-            // value={password}
-            // onChangeText={text => setPassword(text)}
+            value={address}
+            onChangeText={text => setAddress(text)}
             placeHolder=""
 
             label="Address"
@@ -92,10 +127,10 @@ const BookNowScreen = props => {
             justifyContent: 'space-between',
             alignItems: 'center',
           }}>
-            <View style={{ width: 30 * vw,}}>
+            <View style={{ width: 30 * vw, }}>
               <GeneralTextInput
-                // value={password}
-                // onChangeText={text => setPassword(text)}
+                value={date}
+                onChangeText={text => setDate(text)}
                 // lableStyle={{ marginLeft: 2*vw }}
                 placeHolder=""
                 conStyle={{
@@ -108,12 +143,12 @@ const BookNowScreen = props => {
                 label="Date"
               />
             </View>
-            <View style={{width: 30 * vw,}}>
+            <View style={{ width: 30 * vw, }}>
 
 
               <GeneralTextInput
-                // value={password}
-                // onChangeText={text => setPassword(text)}
+                value={time}
+                onChangeText={text => setTime(text)}
                 viewCon={{ marginRight: 5 * vw }}
                 placeHolder=""
                 conStyle={{ width: 30 * vw }}
@@ -126,7 +161,7 @@ const BookNowScreen = props => {
         <SubmitButton
           style={styles.submitButtonStyle}
           title="Proceed to Pay"
-        // onPress={()=>props.navigation.navigate('GetStartedScreen')}
+          onPress={book}
         />
       </ScrollWrapper>
     </View >

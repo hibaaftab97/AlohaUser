@@ -14,7 +14,7 @@ export const post = async (endpoint, body, formData, queryParams) => {
     base_url +
     endpoint +
     dataToQueryParameter(queryParams);
-  console.log(url, 'the url is here');
+  console.log(url, 'the url is here',formData);
 
   const configs = getConfigs('POST', body, formData);
   try {
