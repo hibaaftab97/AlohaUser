@@ -4,22 +4,22 @@ import TextWrapper from '../TextWrapper';
 import { Rating, AirbnbRating } from 'react-native-ratings';
 import styles from './styles';
 import { vh, vw } from '../../units';
-import { Icons } from '../../assets/images';
+import { generalImages, Icons } from '../../assets/images';
 
 const ShopCard = props => {
-  console.log('ShopCard',props);
   return (
     <TouchableOpacity style={[styles.box]}
       onPress={props.onPress}
     >
-      <Image source={{uri:props.item.images[0].title}}
+      <Image source={{uri:props?.item?.images[0]?.title}}
+      defaultSource={generalImages.shop1}
         style={styles.img} />
       <TextWrapper style={[styles.title,{width: 40 * vw,textAlign:'center'}]}>{props.item.title}</TextWrapper>
 
       <View style={{ flexDirection: 'row',
       alignItems:'center',
       justifyContent:'space-between'}}>
-        <TextWrapper style={[styles.title]}>{props.item.price}</TextWrapper>
+        <TextWrapper style={[styles.title]}>${props.item.price}</TextWrapper>
         <Rating
           type='star'
           ratingImage={Icons.fullstar}

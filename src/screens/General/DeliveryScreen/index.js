@@ -9,6 +9,8 @@ import TextWrapper from '../../../components/TextWrapper';
 import { generalImages, Icons } from '../../../assets/images';
 import SubmitButton from '../../../components/Buttons/SubmitButton';
 import GeneralTextInput from '../../../components/TextInputs/GeneralTextInput';
+import { useSelector } from 'react-redux';
+import { add } from 'react-native-reanimated';
 
 
 const DeliveryScreen = props => {
@@ -16,6 +18,29 @@ const DeliveryScreen = props => {
 
 
   const [activeIndex, setActive] = useState(-1)
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [city, setCity] = useState('');
+  const [address, setAddress] = useState('');
+let totalAmount;
+let cartdata=[];
+
+  const cartItems = useSelector(state => state.cartReducer.cartItems);
+
+  const getTotal=()=>{
+    let totalAmnt=0
+    for (let index = 0; index < cartItems.length; index++) {
+      totalAmnt+=cartItems[index].product_price
+      cartdata.push({
+        item_id:cartItems[index].product_id,
+        quantity:cartItems[index].quantity,
+        price:cartItems[index].product_price,
+      })
+    }
+    totalAmount=totalAmnt
+    return totalAmnt
+  }
 
   return (
     <View style={styles.scroll}>
@@ -27,7 +52,7 @@ const DeliveryScreen = props => {
         />
         <View style={{ alignItems: 'center' }}>
         
-          <View style={[styles.packageBox]}
+          {/* <View style={[styles.packageBox]}
           >
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <View>
@@ -46,38 +71,38 @@ const DeliveryScreen = props => {
 
 
 
-          </View>
+          </View> */}
           <GeneralTextInput
-            // value={password}
-            // onChangeText={text => setPassword(text)}
+            value={name}
+            onChangeText={text => setName(text)}
             placeHolder=""
 
             label="Name"
           />
           <GeneralTextInput
-            // value={password}
-            // onChangeText={text => setPassword(text)}
+            value={email}
+            onChangeText={text => setEmail(text)}
             placeHolder=""
 
             label="Email"
           />
           <GeneralTextInput
-            // value={password}
-            // onChangeText={text => setPassword(text)}
+            value={phone}
+            onChangeText={text => setPhone(text)}
             placeHolder=""
 
             label="Phone No"
           />
           <GeneralTextInput
-            // value={password}
-            // onChangeText={text => setPassword(text)}
+            value={city}
+            onChangeText={text => setCity(text)}
             placeHolder=""
 
             label="City"
           />
           <GeneralTextInput
-            // value={password}
-            // onChangeText={text => setPassword(text)}
+            value={address}
+            onChangeText={text => setAddress(text)}
             placeHolder=""
 
             label="Address"
@@ -90,14 +115,24 @@ const DeliveryScreen = props => {
         marginTop:2*vh,
         flexDirection:'row',justifyContent:'flex-end'}}>
             <TextWrapper  style={styles.title}>Total : </TextWrapper>
-            <TextWrapper  style={styles.price}>$24 </TextWrapper>
+            <TextWrapper  style={styles.price}>${getTotal()}</TextWrapper>
 
         </View>
 
         <SubmitButton
           style={styles.submitButtonStyle}
           title="Proceed to Pay"
-        onPress={()=>props.navigation.navigate('PaymentScreen')}
+        onPress={()=>props.navigation.navigate('PaymentScreen',{
+          delivery_info:{
+            name:name,
+            email:email,
+            phone:phone,
+            city:city,
+            address:address
+          },
+          total:totalAmount,
+          cart:cartdata
+        })}
         />
       </ScrollWrapper>
     </View >

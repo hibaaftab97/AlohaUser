@@ -11,6 +11,7 @@ export const getAllShops = () => {
           //   type: types.LOADING_START,
           // });
           const res = await get(endpoints.users.getallProducts);
+          console.log('shops>>>',res);
           dispatch({
             type: types.LOADING_END,
           });

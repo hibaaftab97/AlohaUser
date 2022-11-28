@@ -8,13 +8,14 @@ import CartScreen from '../screens/General/CartScreen';
 import DeliveryScreen from '../screens/General/DeliveryScreen';
 import PaymentScreen from '../screens/General/PaymentScreen';
 import { useSelector } from 'react-redux';
+import HomeScreen from '../screens/General/HomeScreen';
 
 
 function MainNavigator() {
 
   const Stack = createStackNavigator();
   const loggedIn = useSelector(state => state.authReducer.loggedin);
-
+  const state = useSelector(state => state);
 
   return (
     <Stack.Navigator>

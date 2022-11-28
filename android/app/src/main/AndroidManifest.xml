@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.alohauser">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.alohauser">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
@@ -15,9 +16,10 @@
       android:label="@string/app_name"
       android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true"
-      android:roundIcon="@mipmap/ic_launcher_round"
+    android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
-      android:theme="@style/AppTheme">
+      android:theme="@style/AppTheme"
+        tools:targetApi="28">
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"

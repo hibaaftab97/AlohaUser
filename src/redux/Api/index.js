@@ -66,9 +66,13 @@ export const get = async (endpoint, queryParams) => {
   try {
     const networkResult = await performNetworkRequest(url, configs);
     const result = await handleResponse(networkResult);
+    console.log('handleResponse', result);
 
     return Promise.resolve(result);
   } catch (e) {
+    console.log('eeeee', e);
+
+
     const message = getMessage(e);
     return Promise.reject(message);
   }

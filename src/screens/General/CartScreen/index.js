@@ -9,32 +9,42 @@ import TextWrapper from '../../../components/TextWrapper';
 import { generalImages, Icons } from '../../../assets/images';
 import CartItem from '../../../components/CartItem';
 import SubmitButton from '../../../components/Buttons/SubmitButton';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeFromCart, UpdatetoCart } from '../../../redux/actions/cartActions';
 
 
 const CartScreen = props => {
 
-  const services = [{
-    title: "KN95 mask",
-    image: generalImages.carousel,
-    quantity: 2,
-    price: "$149"
-  },
-  {
-    title: "Led Face Mask",
-    image: generalImages.cart,
-    price: "$149",
-    quantity: 2,
+ 
+  const dispatch = useDispatch();
 
-
-  },
-
-
-  ]
 
   const [activeIndex, setActive] = useState(-1)
+  const cartItems = useSelector(state => state.cartReducer.cartItems);
+
   const renderItem = ({ item, index }) => {
     return (
-      <CartItem item={item} />
+      <CartItem item={item} 
+
+      onAdd={(quan)=> 
+        {
+          let data={
+            id:item.product_id,
+            quantity:quan
+          }
+          dispatch(UpdatetoCart(data))
+        }
+        }
+        onMinus={(quan)=> 
+          {
+            let data={
+              id:item.product_id,
+              quantity:quan
+            }
+            dispatch(UpdatetoCart(data))
+          }
+          }
+      onremove={()=> dispatch(removeFromCart(item?.product_id))}/>
     )
   }
 
@@ -51,7 +61,7 @@ const CartScreen = props => {
       />
 
       <FlatList
-        data={services}
+        data={cartItems}
         renderItem={renderItem}
         contentContainerStyle={{ alignItems: 'center', paddingBottom: 10 * vh, }}
         // ListFooterComponent={footer}

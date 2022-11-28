@@ -13,14 +13,14 @@ export const LOG = (label, data) => {
 };
 
 export const showToast = msg => {
-  console.log('messa',msg);
+  console.log('messa', msg);
   presentToast(getMessage(msg));
- 
+
 };
 
 export const showGlobalToast = msg => { };
 export const presentToast = message => {
- 
+
   Toast.show(message);
   //   // EventRegister.emit(events.showToast, getMessage(message))
 };
@@ -74,13 +74,15 @@ export const performNetworkRequest = async (url, configs) => {
     console.log('performNetworkRequest response', { jsonResponse, url, configs });
     return Promise.resolve({ response, jsonResponse });
   } catch (e) {
-    log('error', e);
+    console.log('response=>>>>>e', e);
+
+    // log('error', e);
     return Promise.reject(e);
   }
 };
 export const log = (label, data) => {
   if (__DEV__) {
-    // console.log(TAG + `__${label}__ :`, data);
+    console.log(TAG + `__${label}__ :`, data);
   }
 };
 export const message = 'Something went wrong';
@@ -154,7 +156,7 @@ export const jsonToFormdata = data => {
 export const urlToFormdata = data => {
   //saadia's form data func //formatData
 
- 
+
   let formBody = [];
   for (let property in data) {
     let encodedKey = encodeURIComponent(property);
@@ -166,7 +168,7 @@ export const urlToFormdata = data => {
   return formBody;
 };
 
-export const getConfigs = (method, body, formData = true) => {
+export const getConfigs = (method, body, formData = false) => {
   var headers = {
     Accept: 'application/json',
     // 'X-Requested-With': 'XMLHttpRequest',
@@ -175,23 +177,22 @@ export const getConfigs = (method, body, formData = true) => {
   const data = store.getState();
 
   if (formData == true) {
-     if( method == 'PUT'){
-     headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    if (method == 'PUT') {
+      headers['Content-Type'] = 'application/x-www-form-urlencoded';
 
     }
-    else{
-    headers['Content-Type'] = 'multipart/form-data';
-     }
+    else {
+      headers['Content-Type'] = 'multipart/form-data';
+    }
     if (data.authReducer.token) {
-      headers['Authorization'] = 'Bearer ' + data.authReducer.token;
+      headers['Authorization'] = "Bearer "+ data.authReducer.token;
     }
   }
   console.log(data, 'dataGETCONFIGS');
   if (data) {
     if (data.authReducer) {
-      console.log(data.authReducer.token, 'authReducer.token');
       if (data.authReducer.token) {
-        headers['Authorization'] = 'Bearer ' + data.authReducer.token;
+        headers['Authorization'] ="Bearer "+  data.authReducer.token;
       }
     }
   }
@@ -202,11 +203,11 @@ export const getConfigs = (method, body, formData = true) => {
   if (body) {
     if (method == 'POST' || method == 'PUT') {
       if (formData == true) {
-        if(method == 'PUT'){
+        if (method == 'PUT') {
           configs['body'] = urlToFormdata(body);
 
         }
-        else{
+        else {
           configs['body'] = jsonToFormdata(body);
 
         }

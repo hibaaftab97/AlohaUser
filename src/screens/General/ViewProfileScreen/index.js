@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { View, Dimensions, Image, ImageBackground, Text } from 'react-native';
 import styles from './styles';
 import { vh, vw } from '../../../units';
@@ -11,16 +11,36 @@ import CommonHeader from '../../../components/Headers/CommonHeader';
 import ScrollWrapper from '../../../components/ScrollWrapper';
 import GeneralTextInput from '../../../components/TextInputs/GeneralTextInput';
 import theme from '../../../utils/theme';
+import { getProfile } from '../../../redux/actions/profileActions';
+import { useDispatch } from 'react-redux';
 
 
 const ViewProfileScreen = props => {
-  const [fName, setfName] = useState('Smith');
-  const [lName, setlName] = useState('Johnson');
-  const [email, setemail] = useState('Johnson@gmail.com');
+  const [fName, setfName] = useState('');
+  const [lName, setlName] = useState('');
+  const [email, setemail] = useState('');
+  const [image, setimage] = useState('');
+  const [refreshing, setrefreshing] = useState(true)
 
-  const [password, setPassword] = useState('');
-  const [confirmpassword, setconfirmPassword] = useState('');
+  const [user, setUser] = useState(null);
+  const dispatch = useDispatch();
 
+
+  useEffect(() => {
+    dispatch(getProfile()).then(response => {
+      console.log('response?.status', response);
+      if (response?.status == true) {
+        setUser(response.data)
+        let nameArr = response.data?.name.split(" ")
+        setfName(nameArr[0])
+        setlName(nameArr[1])
+
+        setrefreshing(false)
+      }
+    });
+
+
+  }, [])
 
   const renderFields = () => {
     return (
@@ -32,13 +52,13 @@ const ViewProfileScreen = props => {
 
           <View style={styles.fieldsView}>
             <View style={styles.box}>
-              <TextWrapper style={styles.name}>John</TextWrapper>
+              <TextWrapper style={styles.name}>{fName}</TextWrapper>
             </View>
             <View style={styles.box}>
-              <TextWrapper style={styles.name}>Doe</TextWrapper>
+              <TextWrapper style={styles.name}>{lName}</TextWrapper>
             </View>
             <View style={styles.box}>
-              <TextWrapper style={styles.name}>johndoe@gmail.com</TextWrapper>
+              <TextWrapper style={styles.name}>{user.email}</TextWrapper>
             </View>
           </View>
 
@@ -50,7 +70,7 @@ const ViewProfileScreen = props => {
   return (
     <View style={{ flex: 1, backgroundColor: 'white' }}>
 
-      <ScrollWrapper avoidKeyboard={true}
+      {refreshing==false&&<ScrollWrapper avoidKeyboard={true}
         contentContainerStyle={styles.content}>
 
         {/* <ImageBackground
@@ -65,7 +85,7 @@ const ViewProfileScreen = props => {
           profile
         />
         <View style={{ alignItems: 'center' }}>
-          <Image source={Icons.profile}
+          <Image source={{uri:user?.img}}
             style={styles.img} />
 
 
@@ -75,7 +95,7 @@ const ViewProfileScreen = props => {
         {renderFields()}
 
         {/* </ImageBackground> */}
-      </ScrollWrapper>
+      </ScrollWrapper>}
     </View>
 
   );

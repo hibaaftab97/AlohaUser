@@ -16,10 +16,14 @@ const productReducer = {
  services:[]
 };
 
+const cartReducer = {
+  cartItems: [],
+};
 const initialStates = {
   authReducer: authReducer,
   commonReducer: commonReducer,
   productReducer: productReducer,
+  cartReducer: cartReducer,
 
 
 };

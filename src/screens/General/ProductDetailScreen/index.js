@@ -13,6 +13,7 @@ import Quantity from '../../../components/Quantity';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductDetail } from '../../../redux/actions/productActions';
+import { addToCart } from '../../../redux/actions/cartActions';
 
 
 const ProductDetailScreen = props => {
@@ -21,6 +22,8 @@ const ProductDetailScreen = props => {
 
   const [refreshing, setrefreshing] = useState(true)
   const [productDetail, setproductDetail] = useState(null)
+  const [quantity, setQuantity] = useState(1)
+
 
   const slider = [{
     image: generalImages.carousel,
@@ -40,6 +43,17 @@ const ProductDetailScreen = props => {
 
 
   ]
+
+  const handleCart = () => {
+    let data = {
+      id: productDetail?.id,
+      image: productDetail?.images[0]?.title,
+      title: productDetail.title, 
+      itemQuantity: quantity,
+      price: productDetail?.price
+    }
+    dispatch(addToCart(data))
+  }
 
   useEffect(() => {
     dispatch(getProductDetail(props.route.params.productId)).then(response => {
@@ -92,7 +106,7 @@ const ProductDetailScreen = props => {
 
     return (
       <View style={{ alignItems: 'center' }}>
-        <Image source={{uri:item?.title}}
+        <Image source={{ uri: item?.title }}
           style={styles.carImg} />
 
       </View>
@@ -137,51 +151,53 @@ const ProductDetailScreen = props => {
           }}
         />
       }>
-        {productDetail!==null&&<>
-        {renderSlideBanner()}
-        <View style={{ alignItems: 'center' }}>
-          <TextWrapper style={styles.name}>{productDetail?.title}</TextWrapper>
-          <TextWrapper style={styles.price}>{productDetail?.price}</TextWrapper>
+        {productDetail !== null && <>
+          {renderSlideBanner()}
+          <View style={{ alignItems: 'center' }}>
+            <TextWrapper style={styles.name}>{productDetail?.title}</TextWrapper>
+            <TextWrapper style={styles.price}>{productDetail?.price}</TextWrapper>
 
-        </View>
-        <View style={{ paddingHorizontal: 4 * vw }}>
-          <TextWrapper style={styles.cat}>Colors</TextWrapper>
-          <FlatList
-            data={colors}
-            renderItem={renderServiceItem}
-            horizontal
-            contentContainerStyle={{ alignItems: 'center', paddingBottom: 1 * vh }}
+          </View>
+          <View style={{ paddingHorizontal: 4 * vw }}>
+            <TextWrapper style={styles.cat}>Colors</TextWrapper>
+            <FlatList
+              data={colors}
+              renderItem={renderServiceItem}
+              horizontal
+              contentContainerStyle={{ alignItems: 'center', paddingBottom: 1 * vh }}
 
-            // keyExtractor={item => item.id}
-            style={{ width: 100 * vw, paddingBottom: 1 * vh }}
-            showsHorizontalScrollIndicator={false}
-          />
-        </View>
-        <View style={{ paddingHorizontal: 4 * vw }}>
-          <TextWrapper style={styles.cat}>Descriptions</TextWrapper>
-          <TextWrapper style={styles.des}>{productDetail?.description}</TextWrapper>
+              // keyExtractor={item => item.id}
+              style={{ width: 100 * vw, paddingBottom: 1 * vh }}
+              showsHorizontalScrollIndicator={false}
+            />
+          </View>
+          <View style={{ paddingHorizontal: 4 * vw }}>
+            <TextWrapper style={styles.cat}>Descriptions</TextWrapper>
+            <TextWrapper style={styles.des}>{productDetail?.description}</TextWrapper>
 
-        </View>
+          </View>
 
-        <View style={{ paddingHorizontal: 4 * vw }}>
-          <TextWrapper style={styles.cat}>Manufacturer</TextWrapper>
-          <TextWrapper style={styles.des}>John Doe</TextWrapper>
+          <View style={{ paddingHorizontal: 4 * vw }}>
+            <TextWrapper style={styles.cat}>Manufacturer</TextWrapper>
+            <TextWrapper style={styles.des}>John Doe</TextWrapper>
 
-        </View>
-        <View style={{ alignItems: 'center', marginTop: vh }}>
-          <Quantity />
-        </View>
-        {/* <SubmitButton
+          </View>
+          <View style={{ alignItems: 'center', marginTop: vh }}>
+            <Quantity quantity={quantity}
+              onDecrease={() => setQuantity(quantity - 1)}
+              onIncrease={() => setQuantity(quantity + 1)} />
+          </View>
+          {/* <SubmitButton
           // onPress={handleLogin}
           style={styles.submitButtonStyle}
           title="Buy Now"
         /> */}
 
-        <SubmitButton
-          // onPress={handleLogin}
-          style={styles.submitButtonStyle}
-          title="Add to Cart"
-        />
+          <SubmitButton
+            onPress={handleCart}
+            style={styles.submitButtonStyle}
+            title="Add to Cart"
+          />
         </>}
       </ScrollView>
     </View >

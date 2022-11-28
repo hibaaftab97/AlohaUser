@@ -9,6 +9,7 @@ export const persistConfig = {
   key: 'ArmarioPerfecto',
   storage: AsyncStorage,
   debug: __DEV__,
+  whitelist:['authReducer'],
   blacklist: ['commonReducer'],
 };
 

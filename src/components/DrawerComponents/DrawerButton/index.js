@@ -30,7 +30,7 @@ const drawerRoutes = {
     label: 'Payments',
     icon: Icons.drawer8,
   },
-  orderStack: {
+  OrderStack: {
     label: 'Order Summary',
     icon: Icons.drawer5,
   },

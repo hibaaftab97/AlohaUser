@@ -20,10 +20,13 @@ export default style = StyleSheet.create({
   deleIcon:{
     width:5*vw,
     height:5*vw,
+   
+    resizeMode:'contain'
+  },
+  deleteBox:{
     position:'absolute',
     right:2*vw,
     top:2*vh,
-    resizeMode:'contain'
   },
   box: {
     width: 90 * vw,

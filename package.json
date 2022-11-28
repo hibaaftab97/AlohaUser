@@ -10,7 +10,6 @@
     "lint": "eslint .",
     "bundle": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
     "release-android": "yarn android --variant=release",
-
     "postinstall": "patch-package"
   },
   "dependencies": {
@@ -20,6 +19,7 @@
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.2",
     "@react-navigation/stack": "^6.2.1",
+    "@stripe/stripe-react-native": "^0.21.0",
     "deprecated-react-native-prop-types": "^2.3.0",
     "moment": "^2.29.3",
     "patch-package": "^6.4.7",

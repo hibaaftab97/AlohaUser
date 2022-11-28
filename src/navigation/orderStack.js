@@ -8,7 +8,7 @@ import OrderSummaryScreen from '../screens/General/OrderSummaryScreen';
 
 
 
-function orderStack() {
+function OrderStack() {
   const Stack = createStackNavigator();
   return (
     <Stack.Navigator>
@@ -29,4 +29,4 @@ function orderStack() {
   );
 }
 
-export default orderStack;
+export default OrderStack;

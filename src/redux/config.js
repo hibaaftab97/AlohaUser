@@ -24,12 +24,15 @@ export const endpoints = {
     getOrderDetail: "users/orders",
 
 
-    getProfile: "vendors/profile",
+    getProfile: "users/profile",
     updateProfile: "vendors/edit",
 
     timeIn: "vendors/time-in",
     timeOut: "vendors/time-out"
 
+  },
+  checkout:{
+    createOrder:"users/checkout"
   }
 
 };

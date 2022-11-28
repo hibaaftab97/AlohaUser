@@ -5,9 +5,12 @@ import styles from './styles';
 import { generalImages, Icons } from '../../../assets/images';
 import theme from '../../../utils/theme';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
-import { vw } from '../../../units';
+import { vh, vw } from '../../../units';
+import { useSelector } from 'react-redux';
 
 const CommonHeader = props => {
+  const cartItems = useSelector(state => state.cartReducer.cartItems);
+
   const navigation = useNavigation();
   const renderHeaderButton = () => {
     if (props.type === 'drawer') {
@@ -64,7 +67,12 @@ const CommonHeader = props => {
 
 
             }}>
-              <Image style={[styles.searchIconStyle]} source={props?.title=='Home'?Icons.homecart:Icons.cart} />
+              <Image style={[styles.searchIconStyle,{tintColor:props?.title=='Home'?theme.primary:'white'}]} source={props?.title=='Home'?Icons.cart:Icons.cart} />
+              <View style={{width:4*vw,
+              alignItems:'center',justifyContent:'center',
+          height:4*vw,borderRadius:2*vw,backgroundColor:theme.primary,position:'absolute',bottom:vh,right:-1*vw,}}>
+<TextWrapper  style={{color:'white',fontSize:1.7*vh}}>{cartItems.length}</TextWrapper>
+              </View>
             </TouchableOpacity>
 
           ) : null}

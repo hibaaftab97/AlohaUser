@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, LayoutAnimation, ImageBackground, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { View, FlatList, RefreshControl, ImageBackground, Image, TouchableOpacity, ScrollView, Text } from 'react-native';
 import styles from './styles';
 import { vh, vw } from '../../../units';
 import CommonHeader from '../../../components/Headers/CommonHeader';
@@ -18,27 +18,34 @@ const HomeScreen = props => {
   const dispatch = useDispatch();
   const products = useSelector(state => state.productReducer.products);
   const services = useSelector(state => state.productReducer.services);
+  const [prodcustSet, setProducts] = useState([])
+  const [sercviesSet, setServices] = useState([])
+  const [refreshing, setrefreshing] = useState(true)
 
-  const [activeIndex, setActive] = useState(-1)
+  const state = useSelector(state => state);
 
-  console.log('state.productReducer.products',products);
+
 
   useEffect(() => {
     dispatch(getAllShops()).then(response => {
 
+      setProducts(response?.data)
 
+      console.log('getAllShops', response);
       dispatch(getallServices()).then(response => {
-
+        setServices(response?.data)
+        setrefreshing(false)
 
       });
     });
+
   }, [])
   const renderItem = ({ item, index }) => {
     return (
       <ShopCard item={item}
         onPress={() => props?.navigation.navigate('ShopStack', {
           screen: "ProductDetailScreen",
-          params: { productId:item.id},
+          params: { productId: item.id },
         })} />
     )
   }
@@ -48,30 +55,40 @@ const HomeScreen = props => {
       <ServiceCard item={item}
         onPress={() => props?.navigation.navigate('ServicesStack', {
           screen: "ServiceDetailScreen",
-          params: { serviceid:item.id},
+          params: { serviceid: item.id },
         })} />
     )
   }
+
+  // return <Text style={{color:"white"}}>Hiba BAVLI</Text>
   return (
     <ImageBackground style={styles.scroll}
       imageStyle={{}}
       source={Icons.homeBg}>
       <ScrollView
         showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            colors={[theme.primary]}
+            tintColor={theme.defaultInactiveBorderColor}
+            refreshing={refreshing}
+
+          />
+        }
       >
-        <CommonHeader type='drawer'
+        {refreshing==false&&<><CommonHeader type='drawer'
           title="Home"
           style={{ color: theme.primary }}
           cart />
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-          <TextWrapper style={styles.bannertitle}>We Provide Fast &  Reliable Medical Testing  Services</TextWrapper>
-          <Image source={generalImages.banner}
-            resizeMode='contain'
-            style={{ width: 40 * vw, height: 40 * vw, }} />
-        </View>
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+            <TextWrapper style={styles.bannertitle}>We Provide Fast &  Reliable Medical Testing  Services</TextWrapper>
+            <Image source={generalImages.banner}
+              resizeMode='contain'
+              style={{ width: 40 * vw, height: 40 * vw, }} />
+          </View>
 
 
-        {products.length>0&&services.length>0&&<>
+
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: 95 * vw, marginTop: 5 * vh }}>
             <View>
 
@@ -84,7 +101,7 @@ const HomeScreen = props => {
 
           </View>
           <FlatList
-            data={products}
+            data={prodcustSet}
             renderItem={renderItem}
             horizontal
             contentContainerStyle={{ alignItems: 'center', paddingBottom: 5 * vh }}
@@ -105,7 +122,7 @@ const HomeScreen = props => {
 
           </View>
           <FlatList
-            data={services}
+            data={sercviesSet}
             renderItem={renderServiceItem}
             horizontal
             contentContainerStyle={{ alignItems: 'center', paddingBottom: 5 * vh }}
@@ -115,6 +132,7 @@ const HomeScreen = props => {
             showsVerticalScrollIndicator={false}
           />
         </>}
+
       </ScrollView>
 
     </ImageBackground >

@@ -18,7 +18,7 @@ const routeOrders = [
   'ShopStack',
   'AppointmentStack',
   'PaymentStack',
-  'orderStack',
+  'OrderStack',
   'ProfileStack',
   'HelpStack',
 ];
@@ -44,7 +44,7 @@ const drawerRoutes = {
     label: 'Payments',
     icon: Icons.drawer8,
   },
-  orderStack: {
+  OrderStack: {
     label: 'Order Summary',
     icon: Icons.drawer5,
   },

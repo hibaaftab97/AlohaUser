@@ -8,10 +8,10 @@ const authReducer = (state = initialState, action) => {
   switch (action.type) {
    
     case types.LOGIN:
+      console.log("LOGIN REDUCER: ", action?.payload);
       return {
         ...state,
         token: action.payload?.token,
-        customer:action.payload?.user,
         loggedin: true,
         isLoading: false,
       };

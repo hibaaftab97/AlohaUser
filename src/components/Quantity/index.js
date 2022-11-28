@@ -7,12 +7,12 @@ import styles from './styles';
 const Quantity = props => {
   return (
     <View style={{ flexDirection: 'row' ,alignItems:'center'}}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={props.onDecrease}>
         <Image source={Icons.minus} 
         style={styles.plus}/>
       </TouchableOpacity>
       <TextWrapper  style={styles.quantitytext}>{props?.quantity?props?.quantity:2}</TextWrapper>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={props.onIncrease}>
         <Image source={Icons.plus} 
          style={styles.plus}/>
       </TouchableOpacity>

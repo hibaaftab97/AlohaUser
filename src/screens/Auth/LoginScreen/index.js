@@ -12,6 +12,7 @@ import theme from '../../../utils/theme';
 import { userLogin } from '../../../redux/actions/authActions';
 import { useDispatch } from 'react-redux';
 import { showToast } from '../../../redux/Api/HelperFunction';
+import { getAllShops } from '../../../redux/actions/productActions';
 
 const LoginScreen = props => {
   const dispatch = useDispatch();
@@ -37,16 +38,20 @@ const LoginScreen = props => {
       showToast('Please Enter a Valid Email');
     }
     else {
-      dispatch(userLogin(data)).then(response => {
+      try {
+        let response =  dispatch(userLogin(data))
+        console.log("productsResponse RESPONSE: ", response);
 
-        console.log('response?.status', response);
-        if (response?.status) {
-          // setVisible(!visible);
-          // props.navigation.navigate('DrawerNavigator')
-
+        if(response.status){
+          props.navigation.navigate("DrawerNavigator")
+          // let productsResponse =  await dispatch(getAllShops())
+          // console.log(" RESPONSE: ", productsResponse);
 
         }
-      });
+
+      } catch (error) {
+        console.log("LOGIN ERRIR: ", error);
+      }
     }
 
 

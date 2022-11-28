@@ -1,5 +1,5 @@
-import React, { useState ,useEffect} from 'react';
-import { View, Dimensions, Image, ImageBackground,RefreshControl, Text, TouchableOpacity, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Dimensions, Image, ImageBackground, RefreshControl, Text, TouchableOpacity, ScrollView } from 'react-native';
 import styles from './styles';
 import { vh, vw } from '../../../units';
 import AuthTextInput from '../../../components/TextInputs/AuthTextInput';
@@ -25,35 +25,21 @@ const ProfileScreen = props => {
   const [password, setPassword] = useState('');
   const [confirmpassword, setconfirmPassword] = useState('');
 
-  useEffect(() => {
-//     dispatch(getprofile()).then(response => {
-//       console.log('response?.status', response);
-//       if (response?.status == true) {
-//         setUser(response.data)
-//         let nameArr=response.data?.name.split(" ")
-// setfName(nameArr[0])
-// setlName(nameArr[1])
-
-//         setrefreshing(false)
-//       }
-//     });
+ 
 
 
-  }, [])
+  const getUpdatedProfile = () => {
+    setrefreshing(true)
 
+    dispatch(getprofile()).then(response => {
+      console.log('response?.status', response);
+      if (response?.status == true) {
+        setUser(response.data)
+        setrefreshing(false)
 
-  // const getUpdatedProfile=()=>{
-  //   setrefreshing(true)
-
-  //   dispatch(getprofile()).then(response => {
-  //     console.log('response?.status', response);
-  //     if (response?.status == true) {
-  //       setUser(response.data)
-  //       setrefreshing(false)
-
-  //     }
-  //   });
-  // }
+      }
+    });
+  }
   const renderFields = () => {
     return (
 
@@ -95,29 +81,29 @@ const ProfileScreen = props => {
     );
   };
   return (
-    <ScrollView 
-  
-    style={{ flex: 1, backgroundColor: 'white' }}>
-     <ScrollWrapper avoidKeyboard={true}
+    <ScrollView
 
-          contentContainerStyle={styles.content}>
+      style={{ flex: 1, backgroundColor: 'white' }}>
+      <ScrollWrapper avoidKeyboard={true}
 
-          <ImageBackground
-            style={{
-              width: 100 * vw, height: 100 * vh
+        contentContainerStyle={styles.content}>
 
-            }}
-            resizeMode='cover'
-            imageStyle={styles.scroll}
-            source={require('../../../assets/images/ProfileBG.png')}>
-            <CommonHeader
-              edit
-            />
-            {renderFields()}
+        <ImageBackground
+          style={{
+            width: 100 * vw, height: 100 * vh
 
-          </ImageBackground>
-        </ScrollWrapper>
-      
+          }}
+          resizeMode='cover'
+          imageStyle={styles.scroll}
+          source={require('../../../assets/images/ProfileBG.png')}>
+          <CommonHeader
+            edit
+          />
+          {renderFields()}
+
+        </ImageBackground>
+      </ScrollWrapper>
+
     </ScrollView>
 
   );
